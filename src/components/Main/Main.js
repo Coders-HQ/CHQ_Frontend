@@ -4,7 +4,6 @@ import React from "react";
 import Nav from "../Navbar/Nav";
 import Overlay from "./Overlay";
 import Info from "./Info";
-import Login from "./Login";
 import vid1 from "../video/vid2.mp4";
 
 const Main = () => (
@@ -26,7 +25,6 @@ const Main = () => (
     >
       <source src={vid1} type="video/mp4" />
     </video>
-    <Login />
     <Overlay />
     <Nav />
     <Info />
