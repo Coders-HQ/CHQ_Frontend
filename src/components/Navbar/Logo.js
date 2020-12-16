@@ -1,16 +1,16 @@
-/** @jsx jsx */
+/** @jsxImportSource @emotion/core */
 import { jsx, css } from "@emotion/core";
 import React from "react";
-import {ReactComponent as ReactLogo} from '../Image/whiteLogoNoBackground.svg';
+import { ReactComponent as ReactLogo } from "../Image/whiteLogoNoBackground.svg";
 
 const Logo = () => (
   <div className="Logo">
-  <ReactLogo />
-</div>
+    <ReactLogo />
+  </div>
 );
 
 const styles = css`
-  float : left;
+  float: left;
   cursor: pointer;
 `;
 

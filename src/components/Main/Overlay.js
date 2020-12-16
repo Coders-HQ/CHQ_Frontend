@@ -1,4 +1,4 @@
-/** @jsx jsx */
+/** @jsxImportSource @emotion/core */
 import { jsx, css } from "@emotion/core";
 import React from "react";
 
@@ -10,7 +10,7 @@ const styles = css`
   right: 0;
   bottom: 0;
   left: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
 `;
 
 export default Overlay;
