@@ -18,6 +18,8 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 ### Docker
 
-If you face any issues regarding running the docker container, try using `docker run -d -p 0.0.0.0:33324:33324 chqfrontend:latest`
+First you're gonna have to build the docker image, and give it a name..
+
+If you face any issues regarding running the docker container, try using `docker run -d -p 0.0.0.0:33324:33324 <image name>`
 or even try running the container using Docker Desktop with this configuration
 
