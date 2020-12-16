@@ -9,7 +9,7 @@ const Info = () => (
       <span>SHAKING</span> THE <span>WORLD</span> USING <span>CODE</span>
     </h1>
     <p>
-      <Button center text="WHAT ARE WE2?"></Button>
+      <Button center text="WHAT ARE WE?"></Button>
     </p>
   </div>
 );
