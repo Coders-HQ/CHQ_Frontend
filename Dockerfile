@@ -17,7 +17,7 @@ RUN npm install react-scripts@3.4.1 -g --silent
 COPY . ./
 
 # set ports and expose
-
+ENV HOST=0.0.0.0
 ENV PORT=33324
 
 EXPOSE 33324
