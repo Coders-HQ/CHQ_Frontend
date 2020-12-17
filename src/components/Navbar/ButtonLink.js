@@ -2,8 +2,8 @@
 import { jsx, css } from "@emotion/core";
 import React from "react";
 
-const Link = ({ name, linkTo }) => (
-  <a css={styles} href={linkTo}>
+const ButtonLink = ({ name }) => (
+  <a css={styles} className="link">
     {name}
   </a>
 );
@@ -17,6 +17,7 @@ const styles = css`
   transition: color 100ms ease-in-out;
   &:hover {
     color: #9477cb;
+    cursor: pointer;
   }
   @media (max-width: 1000px) {
     padding: 14px 0;
@@ -25,4 +26,4 @@ const styles = css`
   }
 `;
 
-export default Link;
+export default ButtonLink;

@@ -4,7 +4,7 @@ import React from "react";
 import Nav from "../Navbar/Nav";
 import Overlay from "./Overlay";
 import Info from "./Info";
-import vid1 from "../video/vid2.mp4";
+import backgroundVideo from "../video/vid2.mp4";
 
 const Main = () => (
   <section css={styles} className="main" id="home">
@@ -23,7 +23,7 @@ const Main = () => (
         zIndex: "-1",
       }}
     >
-      <source src={vid1} type="video/mp4" />
+      <source src={backgroundVideo} type="video/mp4" />
     </video>
     <Overlay />
     <Nav />

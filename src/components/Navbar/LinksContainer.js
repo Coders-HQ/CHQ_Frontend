@@ -1,27 +1,57 @@
 /** @jsxImportSource @emotion/core */
 import { jsx, css } from "@emotion/core";
 import React from "react";
-import Link from "./Link";
+import ButtonLink from "./ButtonLink";
 import Button from "../GlobalComponents/Button";
 import github from "../Image/github.svg";
+import { useState, useEffect, useCallback } from "react";
+import { Router, Route } from "wouter";
+
+// returns the current hash location in a normalized form
+// (excluding the leading '#' symbol)
+const currentLocation = () => {
+  return window.location.hash.replace(/^#/, "") || "/";
+};
+
+const useHashLocation = () => {
+  const [loc, setLoc] = useState(currentLocation());
+
+  useEffect(() => {
+    // this function is called whenever the hash changes
+    const handler = () => setLoc(currentLocation());
+
+    // subscribe to hash changes
+    window.addEventListener("hashchange", handler);
+    return () => window.removeEventListener("hashchange", handler);
+  }, []);
+
+  // remember to wrap your function with `useCallback` hook
+  // a tiny but important optimization
+  const navigate = useCallback((to) => (window.location.hash = to), []);
+
+  return [loc, navigate];
+};
 
 const LinksContainer = ({ hidden }) => {
   return (
     <div css={styles} className={(hidden ? "hidden" : "") + " linksContainer"}>
-      <Link name="INCENTIVE" linkTo="#incentive" />
-      <Link name="OUR CAUSE" linkTo="#ourCause" />
-      <Link name="OUR GROUPS" linkTo="#ourGroups" />
-      <Button text="JOIN NOW" />
-      <Button text="SIGN IN" />
-      <a href="https://github.com/orgs/Coders-HQ">
-        <img
-          height={55}
-          margin-left={10}
-          src={github}
-          alt="github"
-          name="github"
-        />
-      </a>
+      <Router hook={useHashLocation}>
+        <Route path="/about" component={github} />
+        <ButtonLink name="INCENTIVE" />
+        <ButtonLink name="OUR CAUSE" />
+        <ButtonLink name="OUR GROUPS" />
+        <Button text="JOIN NOW" />
+        <Button text="SIGN IN" />
+        <a href="https://github.com/orgs/Coders-HQ">
+          <img
+            height={55}
+            margin-left={10}
+            src={github}
+            alt="github"
+            name="github"
+          />
+        </a>
+      </Router>
     </div>
   );
 };
