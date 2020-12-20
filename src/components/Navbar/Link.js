@@ -2,8 +2,8 @@
 import { jsx, css } from "@emotion/core";
 import React from "react";
 
-const ButtonLink = ({ name }) => (
-  <a css={styles} className="link">
+const Link = ({ name, linkTo }) => (
+  <a css={styles} className="link" href={linkTo}>
     {name}
   </a>
 );
@@ -26,4 +26,4 @@ const styles = css`
   }
 `;
 
-export default ButtonLink;
+export default Link;

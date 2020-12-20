@@ -1,21 +1,16 @@
 /** @jsxImportSource @emotion/core */
 import { jsx, css } from "@emotion/core";
 import React from "react";
-import ButtonLink from "./ButtonLink";
+import Link from "./Link";
 import Button from "../GlobalComponents/Button";
 import github from "../Image/github.svg";
 
 const LinksContainer = ({ hidden }) => {
-  function toggleLogin(e) {
-    e.preventDefault();
-    console.log("Toggle Login");
-  }
-
   return (
     <div css={styles} className={(hidden ? "hidden" : "") + " linksContainer"}>
-      <ButtonLink name="INCENTIVE" />
-      <ButtonLink name="OUR CAUSE" />
-      <ButtonLink name="OUR GROUPS" />
+      <Link name="INCENTIVE" linkTo="/incentive" />
+      <Link name="OUR CAUSE" linkTo="/cause" />
+      <Link name="OUR GROUPS" linkTo="/groups" />
       <Button text="JOIN NOW" linkTo="/register" />
       <Button text="SIGN IN" linkTo="/login" />
       <a href="https://github.com/orgs/Coders-HQ">
@@ -24,7 +19,7 @@ const LinksContainer = ({ hidden }) => {
           margin-left={10}
           src={github}
           alt="github"
-          name="github"
+          name="GitHub"
         />
       </a>
     </div>

@@ -3,7 +3,7 @@ import { jsx, css } from "@emotion/core";
 import React from "react";
 
 const Button = ({ text, linkTo }) => (
-  <a css={styles} href="{linkTo}" className="btn">
+  <a css={styles} href={linkTo} className="btn">
     {text}
   </a>
 );
