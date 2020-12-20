@@ -2,8 +2,8 @@
 import { jsx, css } from "@emotion/core";
 import React from "react";
 
-const Button = ({ text }) => (
-  <a css={styles} href="#/" className="btn">
+const Button = ({ text, linkTo }) => (
+  <a css={styles} href="{linkTo}" className="btn">
     {text}
   </a>
 );
