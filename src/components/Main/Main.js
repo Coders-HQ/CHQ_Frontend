@@ -5,9 +5,12 @@ import Nav from "../Navbar/Nav";
 import Overlay from "./Overlay";
 import Info from "./Info";
 import backgroundVideo from "../video/vid2.mp4";
-import Login from "../../pages/Login";
-import Register from "../../pages/Register";
+import Login from "../../pages/Login/Login";
+import Register from "../../pages/Register/Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Incentive from "../../pages/Incentive/Incentive";
+import Cause from "../../pages/Cause/Cause";
+import Groups from "../../pages/Groups/Groups";
 
 const Main = () => (
   <Router>
@@ -31,8 +34,12 @@ const Main = () => (
       </video>
       <Overlay />
       <Nav />
-      <Route path="/login" component={Login} />
-      <Route path="/register" component={Register} />
+      <Switch>
+        <Route path="/" exact component={Info} />
+        <Route path="/incentive" component={Incentive} />
+        <Route path="/cause" component={Cause} />
+        <Route path="/groups" component={Groups} />
+      </Switch>
       <Info />
     </section>
   </Router>
