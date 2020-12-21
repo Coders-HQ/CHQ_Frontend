@@ -10,6 +10,7 @@ import { Router, Route } from "wouter";
 const LinksContainer = ({ hidden }) => {
   return (
     <div css={styles} className={(hidden ? "hidden" : "") + " linksContainer"}>
+      <Link name="HOME" linkTo="/" />
       <Link name="INCENTIVE" linkTo="/incentive" />
       <Link name="OUR CAUSE" linkTo="/cause" />
       <Link name="OUR GROUPS" linkTo="/groups" />
@@ -34,9 +35,9 @@ const styles = css`
   display: flex;
   align-items: Center;
   justify-content: space-between;
-  margin-right: 4px;
+  margin-right: 6px;
   a {
-    margin-right: 10px;
+    margin-right: 5px;
   }
   @media (max-width: 1000px) {
     max-width: 100%;
