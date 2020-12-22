@@ -1,5 +1,5 @@
 import React from "react";
-import ReactLogo from "../../components/Image/chq_logos/png/dark_notext.png";
+import ReactLogo from "../../components/Image/chq_logos/png/dark_text.png";
 
 const Logo = () => {
   return (
