@@ -2,9 +2,9 @@
 
 import React from "react";
 
-import Home from "../../pages/Home/Home";
-import Login from "../../pages/Login/Login";
-import Register from "../../pages/Register/Register";
+import Home from "../../Pages/Home/Home";
+import Login from "../../Pages/Login/Login";
+import Register from "../../Pages/Register/Register";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const Main = () => (

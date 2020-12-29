@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Main from "./components/Main/Main";
+import Main from "./Components/Main/Main";
 
 const App = () => (
   <div className="App">
