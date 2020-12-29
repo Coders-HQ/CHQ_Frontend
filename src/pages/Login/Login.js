@@ -16,38 +16,41 @@ import { red } from "@material-ui/core/colors";
 import Logo from "../../Components/GlobalComponents/Logo";
 import { useDispatch } from "react-redux";
 import { login } from "../../Features/userSlice";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../Features/userSlice";
 import axios from "axios";
+import RedirectTo from "../../Components/Main/RedirectTo";
 
 const Login = () => {
   const classes = useStyles();
 
   const [username, setUsername] = useState("");
   const [pass, setPass] = useState("");
+  const [token, setToken] = useState("");
   const [loginError, setLoginError] = useState("");
 
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(
-      login({
-        name: username,
-        pass: pass,
-        loggedIn: true,
-      })
-    );
-
     axios
       .post("https://coders-hq.herokuapp.com/auth/login/", {
         username: username,
         password: pass,
       })
-      .then((res) => console.log(res))
+      .then((res) =>
+        dispatch(
+          login({
+            token: res.data.key,
+          })
+        )
+      )
       .catch((e) => setLoginError(true));
   };
+
   return (
     <Container component="main" maxWidth="xs">
+      <RedirectTo />
       <CssBaseline />
       <div className={classes.paper}>
         <Logo />

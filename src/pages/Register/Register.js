@@ -17,6 +17,7 @@ import Logo from "../../Components/GlobalComponents/Logo";
 import { useDispatch } from "react-redux";
 import { login } from "../../Features/userSlice";
 import axios from "axios";
+import RedirectTo from "../../Components/Main/RedirectTo";
 
 const Register = () => {
   const classes = useStyles();
@@ -42,6 +43,7 @@ const Register = () => {
   };
   return (
     <Container component="main" maxWidth="xs">
+      <RedirectTo />
       <CssBaseline />
       <div className={classes.paper}>
         <Logo />
