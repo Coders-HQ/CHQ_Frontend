@@ -14,7 +14,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { red } from "@material-ui/core/colors";
 import Logo from "../../Components/GlobalComponents/Logo";
-import Collapse from "@material-ui/core/Collapse";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -50,9 +49,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = (errorStatus) => {
+const Login = () => {
   const classes = useStyles();
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -61,9 +59,7 @@ const Login = (errorStatus) => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <Collapse in={errorStatus ? errorStatus : false}>
-          <Error />
-        </Collapse>
+        <Error status={false} />
         <form className={classes.form} noValidate>
           <TextField
             variant="outlined"

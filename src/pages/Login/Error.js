@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
+import Collapse from "@material-ui/core/Collapse";
 
 const errorStyles = makeStyles((theme) => ({
   root: {
@@ -11,12 +12,15 @@ const errorStyles = makeStyles((theme) => ({
   },
 }));
 
-const Error = () => {
+const Error = (status) => {
+  // If status is false -> then error won't show
   const classes = errorStyles();
   return (
-    <div className={classes.root}>
-      <Alert severity="error">Wrong username or password</Alert>
-    </div>
+    <Collapse in={status.status}>
+      <div className={classes.root}>
+        <Alert severity="error">Wrong username or password</Alert>
+      </div>
+    </Collapse>
   );
 };
 
