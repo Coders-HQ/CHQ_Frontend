@@ -1,17 +1,11 @@
-/** @jsxImportSource @emotion/core */
-import { jsx, css } from "@emotion/core";
 import Nav from "../../components/Navbar/Nav";
 import Info from "./Info";
 import Overlay from "./Overlay";
 import backgroundVideo from "../../components/video/vid1.mp4";
 import React from "react";
-import Incentive from "../../pages/Incentive/Incentive";
-import Cause from "../../pages/Cause/Cause";
-import Groups from "../../pages/Groups/Groups";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const Home = () => (
-  <section css={styles} className="main" id="home">
+  <section className="main" id="home">
     <video
       autoPlay
       loop
@@ -31,18 +25,13 @@ const Home = () => (
     </video>
     <Overlay />
     <Nav />
-    <Switch>
-      <Route path="/" exact component={Info} />
-      <Route path="/incentive" component={Incentive} />
-      <Route path="/cause" component={Cause} />
-      <Route path="/groups" component={Groups} />
-    </Switch>
+    <Info />
   </section>
 );
 
-const styles = css`
+/* const styles = css`
   width: 100%;
   height: 100vh;
-`;
+`; */
 
 export default Home;

@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/core */
-import { jsx, css } from "@emotion/core";
+
 import React from "react";
 import Button from "../../components/GlobalComponents/Button";
 
 const Info = () => (
-  <div css={styles} className="info">
+  <div className="info">
     <h1>
       <span>SHAKING</span> THE <span>WORLD</span> USING <span>CODE</span>
     </h1>
@@ -14,7 +14,7 @@ const Info = () => (
   </div>
 );
 
-const styles = css`
+/* const styles = css`
   width: 100%;
   max-width: 900px;
   position: absolute;
@@ -55,6 +55,6 @@ const styles = css`
       font-size: 42px;
     }
   }
-`;
+`; */
 
 export default Info;
