@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/core */
-
 import React, { useState } from "react";
 import Logo from "./Logo";
 import LinksContainer from "./LinksContainer";
@@ -9,7 +7,7 @@ const Nav = () => {
   const [hidden, setHidden] = useState(true);
 
   return (
-    <nav css={styles}>
+    <nav className="navbar">
       <Container>
         <Logo />
         <i
@@ -22,33 +20,5 @@ const Nav = () => {
     </nav>
   );
 };
-
-const styles = css`
-  width: 100%;
-  position: absolute;
-  top: 0;
-  padding: 0px 0;
-  background: rgb(26, 26, 26);
-  z-index: 10;
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    #burgerMenu {
-      color: #fff;
-      cursor: pointer;
-      display: none;
-    }
-  }
-  @media (max-width: 1000px) {
-    background: rgb(26, 26, 26);
-    .container {
-      flex-wrap: wrap;
-      #burgerMenu {
-        display: block;
-      }
-    }
-  }
-`;
 
 export default Nav;

@@ -1,17 +1,12 @@
 /** @jsxImportSource @emotion/core */
 
 import React from "react";
-import { ReactComponent as ReactLogo } from "../../../Images/Logo/svg/white_text.svg";
+import ImageSrc from "../../../Images/Logo/png/light_text.png";
 
 const Logo = () => (
   <div className="Logo">
-    <ReactLogo />
+    <img src={ImageSrc} alt="Coders HQ Logo" width="350px" />
   </div>
 );
-
-const styles = css`
-  float: left;
-  cursor: pointer;
-`;
 
 export default Logo;
