@@ -1,25 +1,31 @@
 ## Coders HQ Frontend
 
+This repository holds the Frontend part of Coders HQ's web platform.  
+You may find the Backend repository in [CHQ_Backend](https://github.com/Coders-HQ/CHQ_Backend)  
+The main Coders-HQ website is hosted at [codershq.ae](https://codershq.ae)
+
+#### The frontend uses the following project file structure (The main project file structure is in the backend docs):
+
+(New File Structure will be added here)
+
 In the project directory, you can run:
 
-### `npm start`
+### `yarn start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:33324](http://localhost:33324) to view it in the browser.
 
-### `npm test`
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.
 
-### `npm run build`
+### `yarn run build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### Docker
+### `docker run -d -p 0.0.0.0:33324:33324 <image name>`
 
 First you're gonna have to build the docker image, and give it a name..
 
-If you face any issues regarding running the docker container, try using `docker run -d -p 0.0.0.0:33324:33324 <image name>`
-or even try running the container using Docker Desktop with this configuration
-
+If you face any issues regarding running the docker container, try running the container using Docker Desktop with this configuration
