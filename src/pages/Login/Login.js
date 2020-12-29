@@ -14,6 +14,118 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { red } from "@material-ui/core/colors";
 import Logo from "../../Components/GlobalComponents/Logo";
+import { useDispatch } from "react-redux";
+import { login } from "../../Features/userSlice";
+import axios from "axios";
+
+const Login = () => {
+  const classes = useStyles();
+
+  const [username, setUsername] = useState("");
+  const [pass, setPass] = useState("");
+  const [loginError, setLoginError] = useState("");
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(
+      login({
+        name: username,
+        pass: pass,
+        loggedIn: true,
+      })
+    );
+
+    axios
+      .post("https://coders-hq.herokuapp.com/auth/login/", {
+        username: username,
+        password: pass,
+      })
+      .then((res) => console.log(res))
+      .catch((e) => setLoginError(true));
+  };
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Logo />
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <Error status={loginError} />
+        <form
+          className={classes.form}
+          noValidate
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <TextField
+            className={classes.field}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            label="Username/Email"
+            name="username"
+            autoFocus
+            autoComplete="off"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <TextField
+            className={classes.field}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="secondary"
+            className={classes.submit}
+          >
+            Sign In
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link
+                href="#"
+                variant="body2"
+                color="red"
+                className={classes.link}
+              >
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link
+                href="/register"
+                variant="body2"
+                color="red"
+                className={classes.link}
+              >
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+    </Container>
+  );
+};
+
+// Material-UI Styling
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -47,79 +159,25 @@ const useStyles = makeStyles((theme) => ({
       color: "red",
     },
   },
+  field: {
+    "& label.Mui-focused": {
+      color: "red",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "black",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "black",
+      },
+      "&:hover fieldset": {
+        borderColor: "darkred",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "red",
+      },
+    },
+  },
 }));
 
-const Login = () => {
-  const classes = useStyles();
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Logo />
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <Error status={false} />
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="Username/Email"
-            name="username"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="secondary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link
-                href="#"
-                variant="body2"
-                color="red"
-                className={classes.link}
-              >
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link
-                href="#"
-                variant="body2"
-                color="red"
-                className={classes.link}
-              >
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
-  );
-};
 export default Login;
