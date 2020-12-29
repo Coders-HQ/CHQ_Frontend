@@ -16,9 +16,9 @@ const Error = (status) => {
   // If status is false -> then error won't show
   const classes = errorStyles();
   return (
-    <Collapse className="errorDiv" in={status.status}>
+    <Collapse in={status.status}>
       <div className={classes.root}>
-        <Alert severity="error">Wrong username or password</Alert>
+        <Alert severity="error">Please check your details</Alert>
       </div>
     </Collapse>
   );
