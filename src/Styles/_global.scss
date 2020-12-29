@@ -1,0 +1,25 @@
+.btn {
+  text-decoration: none;
+  display: inline-block;
+  background: #b19cd9;
+  color: #fff;
+  font-size: 14px;
+  padding: 12px 14px;
+  transition: background 150ms ease-in-out;
+  &:hover {
+    background: #6a44b2;
+  }
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+
+  @media (max-width: 1225px) {
+    max-width: 90%;
+  }
+}
+
+.icon {
+  margin: 20px 0;
+}
