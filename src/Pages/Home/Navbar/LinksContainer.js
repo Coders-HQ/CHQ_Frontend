@@ -2,14 +2,14 @@
 
 import React from "react";
 import Link from "./Link";
-import Button from "../GlobalComponents/Button";
-import github from "../Image/github.svg";
+import Button from "../../../Components/GlobalComponents/Button";
+import github from "../../../Images/Other/github.svg";
 import { useState, useEffect, useCallback } from "react";
 import { Router, Route } from "wouter";
 
 const LinksContainer = ({ hidden }) => {
   return (
-    <div css={styles} className={(hidden ? "hidden" : "") + " linksContainer"}>
+    <div className={(hidden ? "hidden" : "") + " linksContainer"}>
       <Link name="HOME" linkTo="/" />
       <Link name="INCENTIVE" linkTo="/incentive" />
       <Link name="OUR CAUSE" linkTo="/cause" />

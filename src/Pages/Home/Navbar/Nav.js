@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Logo from "./Logo";
 import LinksContainer from "./LinksContainer";
-import Container from "../GlobalComponents/Container";
+import Container from "../../../Components/GlobalComponents/Container";
 
 const Nav = () => {
   const [hidden, setHidden] = useState(true);

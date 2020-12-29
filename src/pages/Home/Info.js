@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/core */
 
 import React from "react";
-import Button from "../../components/GlobalComponents/Button";
+import Button from "../../Components/GlobalComponents/Button";
 
 const Info = () => (
   <div className="info">

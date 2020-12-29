@@ -1,7 +1,7 @@
-import Nav from "../../components/Navbar/Nav";
+import Nav from "./Navbar/Nav";
 import Info from "./Info";
 import Overlay from "./Overlay";
-import backgroundVideo from "../../components/video/vid1.mp4";
+import backgroundVideo from "../../Videos/vid1.mp4";
 import React from "react";
 
 const Home = () => (

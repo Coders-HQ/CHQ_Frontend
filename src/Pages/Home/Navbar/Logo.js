@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/core */
 
 import React from "react";
-import { ReactComponent as ReactLogo } from "../Image/whiteLogoNoBackground.svg";
+import { ReactComponent as ReactLogo } from "../../../Images/Logo/svg/white_text.svg";
 
 const Logo = () => (
   <div className="Logo">

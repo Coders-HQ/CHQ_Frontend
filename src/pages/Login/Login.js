@@ -13,7 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { red } from "@material-ui/core/colors";
-import Logo from "../../components/GlobalComponents/Logo";
+import Logo from "../../Components/GlobalComponents/Logo";
 import Collapse from "@material-ui/core/Collapse";
 
 const useStyles = makeStyles((theme) => ({
