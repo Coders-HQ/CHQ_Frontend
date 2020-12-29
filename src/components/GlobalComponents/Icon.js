@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/core */
-import { jsx, css } from "@emotion/core";
+
 import React from "react";
 import LineIcon from "../Image/lines.png";
 

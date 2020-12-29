@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/core */
-import { jsx, css } from "@emotion/core";
+
 import React from "react";
 
 const Button = ({ text, linkTo }) => (
-  <a css={styles} href={linkTo} className="btn">
+  <a href={linkTo} className="btn">
     {text}
   </a>
 );
 
-const styles = css`
+/* const styles = css`
   text-decoration: none;
   display: inline-block;
   background: #b19cd9;
@@ -19,6 +19,6 @@ const styles = css`
   &:hover {
     background: #6a44b2;
   }
-`;
+`; */
 
 export default Button;
