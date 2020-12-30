@@ -34,8 +34,8 @@
     opacity: 1;
     position: absolute;
     left: 0;
-    top: 70px;
-    background: rgb(106, 68, 178);
+    top: 5rem;
+    background: rgb(0, 0, 0);
     transition: top 400ms ease-in-out, opacity 400ms ease-in-out;
     &.hidden {
       left: 0;
@@ -53,6 +53,7 @@
 .Logo {
   float: left;
   cursor: pointer;
+  margin-left: 0.25%;
 }
 
 .navbar {
@@ -80,5 +81,11 @@
         display: block;
       }
     }
+  }
+}
+
+.github-button {
+  img {
+    margin-top: 10%;
   }
 }
