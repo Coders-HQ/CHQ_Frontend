@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Error from "./Error";
+import Message from "./Message";
 import {
   Button,
   CssBaseline,
@@ -9,6 +9,7 @@ import {
   Link,
   Grid,
 } from "@material-ui/core";
+import Loading from "../../Components/GlobalComponents/Loading";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -19,45 +20,71 @@ import { login } from "../../Features/userSlice";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../Features/userSlice";
 import axios from "axios";
-import RedirectTo from "../../Components/Main/RedirectTo";
+import { Redirect } from "react-router-dom";
+import { Auth } from "../../App/Auth";
 
 const Login = () => {
   const classes = useStyles();
 
+  // User Credentials
   const [username, setUsername] = useState("");
   const [pass, setPass] = useState("");
   const [token, setToken] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Loading Effect for API
+  const [isLoading, setIsLoading] = useState("");
+
+  // Error Handling
   const [loginError, setLoginError] = useState("");
+  const [isBlank, setIsBlank] = useState("");
+  const [isInvalid, setIsInvalid] = useState("");
+  const [isUnknown, setIsUnknown] = useState("");
+  const [errorMessage, setMessage] = useState("");
+
+  const renderRedirect = () => {
+    if (Auth || isAuthenticated) {
+      return <Redirect to="/" />;
+    }
+  };
 
   const dispatch = useDispatch();
 
+  const url = "https://coders-hq.herokuapp.com/auth/login/";
+  const user = {
+    username: username,
+    password: pass,
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     axios
-      .post("https://coders-hq.herokuapp.com/auth/login/", {
-        username: username,
-        password: pass,
+      .post(url, user)
+      .then((res) => {
+        localStorage.setItem("token", res.data.key);
+        setIsLoading(true);
+        setLoginError(false);
+        setIsAuthenticated(Auth);
       })
-      .then((res) =>
-        dispatch(
-          login({
-            token: res.data.key,
-          })
-        )
-      )
-      .catch((e) => setLoginError(true));
+      .catch((error) => {
+        setLoginError(true);
+        setIsLoading(false);
+      });
   };
 
   return (
     <Container component="main" maxWidth="xs">
-      <RedirectTo />
+      {Auth || isAuthenticated ? renderRedirect() : ""}
       <CssBaseline />
       <div className={classes.paper}>
         <Logo />
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <Error status={loginError} />
+        <Message
+          status={loginError} // This decides if the error should show or not
+        />
         <form
           className={classes.form}
           noValidate
@@ -124,6 +151,7 @@ const Login = () => {
           </Grid>
         </form>
       </div>
+      <Loading loading={isLoading} />
     </Container>
   );
 };
