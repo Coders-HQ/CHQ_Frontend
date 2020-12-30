@@ -5,7 +5,7 @@ import ImageSrc from "../../../Images/Logo/png/light_text.png";
 
 const Logo = () => (
   <div className="Logo">
-    <img src={ImageSrc} alt="Coders HQ Logo" width="350px" />
+    <img src={ImageSrc} alt="Coders HQ Logo" width="250px" />
   </div>
 );
 
