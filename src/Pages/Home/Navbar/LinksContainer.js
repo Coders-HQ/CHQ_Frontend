@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "./Link";
 import Button from "../../../Components/GlobalComponents/Button";
-import github from "../../../Images/Other/github.svg";
+import Github from "./Github";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser, logout } from "../../../Features/userSlice";
 
@@ -28,15 +28,7 @@ const LinksContainer = ({ hidden }) => {
       ) : (
         <Button text="LOGIN" linkTo="/login" />
       )}
-      <a href="https://github.com/orgs/Coders-HQ">
-        <img
-          height={55}
-          margin-left={10}
-          src={github}
-          alt="github"
-          name="GitHub"
-        />
-      </a>
+      <Github />
     </div>
   );
 };
