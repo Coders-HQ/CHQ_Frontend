@@ -1,5 +1,6 @@
 .eslintcache
 .git
 .idea
+workspace.code-workspace
 node_modules
 build
