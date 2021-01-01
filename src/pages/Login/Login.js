@@ -68,6 +68,7 @@ const Login = (props) => {
         () => {
           props.history.push("/profile");
           window.location.reload();
+          AuthService.getCurrentUserData().then();
         },
         (error) => {
           const resMessage = error.response && error.response.data;

@@ -27,6 +27,17 @@ const login = (username, password) => {
     .then((response) => {
       if (response.data.key) {
         localStorage.setItem("accessToken", response.data.key);
+        const config = {
+          method: "get",
+          url: API_URL + "user/",
+          headers: {
+            Authorization: "Token " + response.data.key,
+          },
+        };
+
+        axios(config).then((response2) => {
+          localStorage.setItem("userData", JSON.stringify(response2.data));
+        });
       }
 
       return response.data;
@@ -38,7 +49,25 @@ const logout = () => {
 };
 
 const getLocalToken = () => {
-  return JSON.parse(localStorage.getItem("user"));
+  return localStorage.getItem("accessToken");
+};
+
+const getCurrentUserData = () => {
+  const token = getLocalToken();
+  if (token !== null) {
+    const config = {
+      method: "get",
+      url: API_URL + "user/",
+      headers: {
+        Authorization: "Token " + token,
+      },
+    };
+
+    return axios(config).then(function (response) {
+      localStorage.setItem("userData", response.data);
+      return response.data;
+    });
+  }
 };
 
 export default {
@@ -46,4 +75,5 @@ export default {
   login,
   logout,
   getLocalToken,
+  getCurrentUserData,
 };
