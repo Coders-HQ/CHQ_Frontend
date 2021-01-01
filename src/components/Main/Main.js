@@ -7,12 +7,8 @@ import Login from "../../Pages/Login/Login";
 import Register from "../../Pages/Register/Register";
 import Logout from "../../Pages/Logout/Logout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../Features/userSlice";
 
 const Main = () => {
-  const user = useSelector(selectUser);
-
   return (
     <Router>
       <Switch>
