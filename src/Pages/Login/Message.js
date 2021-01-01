@@ -12,13 +12,13 @@ const errorStyles = makeStyles((theme) => ({
   },
 }));
 
-const Message = (status) => {
+const Message = ({ status, errorMessage }) => {
   const classes = errorStyles();
 
   return (
-    <Collapse className="errorDiv" in={status.status}>
+    <Collapse className="errorDiv" in={status}>
       <div className={classes.root}>
-        <Alert severity="error">Invalid Username or Password</Alert>
+        <Alert severity="error">{errorMessage}</Alert>
       </div>
     </Collapse>
   );

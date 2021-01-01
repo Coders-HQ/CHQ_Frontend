@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Message from "./Message";
 import {
   Button,
@@ -15,67 +15,81 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { red } from "@material-ui/core/colors";
 import Logo from "../../Components/GlobalComponents/Logo";
-import { useDispatch } from "react-redux";
-import { login } from "../../Features/userSlice";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../Features/userSlice";
-import axios from "axios";
-import { Redirect } from "react-router-dom";
-import { Auth } from "../../App/Auth";
+import AuthService from "../../Services/auth.service";
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+import { set } from "lodash";
 
-const Login = () => {
+const required = (value) => {
+  if (!value) {
+    console.log("fields required");
+  }
+};
+
+const Login = (props) => {
   const classes = useStyles();
+
+  // Form Validation
+  const form = useRef();
+  const checkBtn = useRef();
 
   // User Credentials
   const [username, setUsername] = useState("");
-  const [pass, setPass] = useState("");
-  const [token, setToken] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState("");
 
   // Loading Effect for API
-  const [isLoading, setIsLoading] = useState("");
+  const [loading, setLoading] = useState("");
 
   // Error Handling
-  const [loginError, setLoginError] = useState("");
-  const [isBlank, setIsBlank] = useState("");
-  const [isInvalid, setIsInvalid] = useState("");
-  const [isUnknown, setIsUnknown] = useState("");
-  const [errorMessage, setMessage] = useState("");
+  const [isError, setError] = useState(false);
+  const [message, setMessage] = useState("");
 
-  const renderRedirect = () => {
-    if (Auth || isAuthenticated) {
-      return <Redirect to="/" />;
-    }
+  const onChangeUsername = (e) => {
+    const username = e.target.value;
+    setUsername(username);
   };
 
-  const dispatch = useDispatch();
-
-  const url = "https://coders-hq.herokuapp.com/auth/login/";
-  const user = {
-    username: username,
-    password: pass,
+  const onChangePassword = (e) => {
+    const password = e.target.value;
+    setPassword(password);
   };
 
-  const handleSubmit = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    axios
-      .post(url, user)
-      .then((res) => {
-        localStorage.setItem("token", res.data.key);
-        setIsLoading(true);
-        setLoginError(false);
-        setIsAuthenticated(Auth);
-      })
-      .catch((error) => {
-        setLoginError(true);
-        setIsLoading(false);
-      });
+
+    setMessage("");
+    setLoading(true);
+
+    form.current.validateAll();
+
+    if (checkBtn.current.context._errors.length === 0) {
+      AuthService.login(username, password).then(
+        () => {
+          props.history.push("/profile");
+          window.location.reload();
+        },
+        (error) => {
+          const resMessage = error.response && error.response.data;
+          if (!(resMessage.password === undefined)) {
+            setMessage("Fields cannot not be empty.");
+          } else if (!(resMessage.non_field_errors === undefined)) {
+            setMessage(resMessage.non_field_errors[0]);
+          } else {
+            setMessage("Unknown Error");
+          }
+          setLoading(false);
+          setError(true);
+        }
+      );
+    } else {
+      setLoading(false);
+      setError(true);
+    }
   };
 
   return (
     <Container component="main" maxWidth="xs">
-      {Auth || isAuthenticated ? renderRedirect() : ""}
       <CssBaseline />
       <div className={classes.paper}>
         <Logo />
@@ -83,13 +97,28 @@ const Login = () => {
           Sign in
         </Typography>
         <Message
-          status={loginError} // This decides if the error should show or not
+          status={isError} // This decides if the error should show or not
+          errorMessage={message}
         />
-        <form
+        <Form
           className={classes.form}
           noValidate
-          onSubmit={(e) => handleSubmit(e)}
+          onSubmit={handleLogin}
+          ref={form}
         >
+          <Input
+            type="hidden"
+            name="username"
+            value={username}
+            validations={[required]}
+          />
+
+          <Input
+            type="hidden"
+            name="password"
+            value={password}
+            validations={[required]}
+          />
           <TextField
             className={classes.field}
             variant="outlined"
@@ -98,11 +127,11 @@ const Login = () => {
             fullWidth
             id="username"
             label="Username/Email"
-            name="username"
             autoFocus
             autoComplete="off"
+            name="username"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={onChangeUsername}
           />
           <TextField
             className={classes.field}
@@ -115,8 +144,8 @@ const Login = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-            value={pass}
-            onChange={(e) => setPass(e.target.value)}
+            value={password}
+            onChange={onChangePassword}
           />
           <Button
             type="submit"
@@ -124,6 +153,7 @@ const Login = () => {
             variant="contained"
             color="secondary"
             className={classes.submit}
+            disabled={false}
           >
             Sign In
           </Button>
@@ -149,9 +179,10 @@ const Login = () => {
               </Link>
             </Grid>
           </Grid>
-        </form>
+          <CheckButton style={{ display: "none" }} ref={checkBtn} />
+        </Form>
       </div>
-      <Loading loading={isLoading} />
+      <Loading loading={loading} />
     </Container>
   );
 };
@@ -205,7 +236,7 @@ const useStyles = makeStyles((theme) => ({
         borderColor: "darkred",
       },
       "&.Mui-focused fieldset": {
-        borderColor: "red",
+        borderColor: "black",
       },
     },
   },
