@@ -1,37 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,500;0,700;0,900;1,300&display=swap");
+
 .info {
   width: 100%;
   max-width: 900px;
   position: absolute;
   top: 50%;
-  left: 60%;
+  left: 40%;
   transform: translate(-50%, -50%);
   z-index: 2;
   color: #fff;
+  font-family: "Montserrat", sans-serif;
 
-  p {
-    width: 100%;
-    max-width: 900px;
-    position: absolute;
-    top: 170%;
-    left: 30%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    color: #fff;
-    text-align: center;
+  .subtext {
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    font-weight: 300;
+    color: rgb(199, 199, 199);
+    margin-bottom: 2.5%;
   }
-  h1 {
-    font-size: 90px;
+
+  .purple {
+    color: #f9004d;
+  }
+
+  .firstname {
+    color: #da215c;
+  }
+
+  .welcomeMessage {
+    font-size: 1.5rem;
+    span {
+      font-weight: 700;
+      letter-spacing: 0.1rem;
+    }
+    margin-bottom: 2%;
+  }
+
+  .maintext {
+    font-size: 5rem;
     margin-left: auto;
     margin-right: auto;
-    width: 8em;
-    line-height: 1;
+    line-height: 6rem;
+    width: 100%;
     font-weight: 900;
     span {
-      color: #8565c4;
+      color: white;
     }
   }
   .btn {
     padding: 1rem 2rem;
+    border-radius: 1rem;
   }
   @media (max-width: 1000px) {
     h1 {

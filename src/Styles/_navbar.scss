@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,500;0,700;0,900;1,300&display=swap");
+
 .link {
   text-decoration: none;
   display: inline-block;
@@ -24,7 +26,7 @@
   justify-content: space-between;
   margin-right: 6px;
   a {
-    margin-right: 5px;
+    margin-right: 2%;
   }
   @media (max-width: 1000px) {
     max-width: 100%;
@@ -35,7 +37,7 @@
     position: absolute;
     left: 0;
     top: 5rem;
-    background: rgb(0, 0, 0);
+    background: rgb(41, 41, 41);
     transition: top 400ms ease-in-out, opacity 400ms ease-in-out;
     &.hidden {
       left: 0;
@@ -47,25 +49,30 @@
       text-align: center;
       padding: 16px;
     }
+    .github-button {
+      img {
+        opacity: 0;
+      }
+    }
   }
 }
 
 .Logo {
   float: left;
   cursor: pointer;
-  margin-left: 0.25%;
+  margin-left: 1%;
 }
 
 .navbar {
   width: 100%;
   position: absolute;
-  top: 0;
-  padding: 0px 0;
-  background: rgb(26, 26, 26);
+  top: 1%;
+  padding: 1rem 2rem;
+  background: transparent;
   z-index: 10;
   .container {
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: space-between;
     #burgerMenu {
       color: #fff;
@@ -74,11 +81,16 @@
     }
   }
   @media (max-width: 1000px) {
-    background: rgb(26, 26, 26);
+    .Logo {
+      cursor: pointer;
+      margin-left: 2%;
+    }
+    background: rgba(26, 26, 26, 0);
     .container {
+      height: 10%;
       flex-wrap: wrap;
       #burgerMenu {
-        display: block;
+        display: none;
       }
     }
   }
@@ -88,4 +100,12 @@
   img {
     margin-top: 10%;
   }
+}
+
+.mid {
+  text-align: center;
+  line-height: 1.5;
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
 }
