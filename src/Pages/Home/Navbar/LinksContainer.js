@@ -1,18 +1,12 @@
 /** @jsxImportSource @emotion/core */
 
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "./Link";
 import Button from "../../../Components/GlobalComponents/Button";
 import Github from "./Github";
+import { logout, isAuth } from "../../../Services/auth.service";
 
 const LinksContainer = ({ hidden }) => {
-  const user = false;
-
-  const handleLogout = (e) => {
-    e.preventDefault();
-    //dispatch(logout());
-  };
-
   return (
     <div className={(hidden ? "hidden" : "") + " linksContainer"}>
       <div className="mid">
@@ -21,12 +15,19 @@ const LinksContainer = ({ hidden }) => {
         <Link name="OUR CAUSE" linkTo="/cause" />
         <Link name="OUR GROUPS" linkTo="/groups" />
       </div>
-      {user ? "" : <Button text="JOIN NOW" linkTo="/register" />}
-      {user ? (
-        <Button text="LOGOUT" onClick={(e) => handleLogout(e)} />
-      ) : (
-        <Button text="LOGIN" linkTo="/login" />
-      )}
+      {
+        // If the user is authenticated it will show the register and login otherwise only logout button
+        isAuth() ? (
+          <Button text="LOGOUT" linkTo="/logout" />
+        ) : (
+          <div>
+            <Button text="JOIN NOW" linkTo="/register" className="reg-btn" />
+            <Button text="LOGIN" linkTo="/login" className="log-btn" />
+          </div>
+        )
+
+        // If the user is authenticated it will show the register and login otherwise only logout button
+      }
       <Github />
     </div>
   );
