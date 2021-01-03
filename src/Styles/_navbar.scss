@@ -8,7 +8,7 @@
   color: #fff;
   transition: color 100ms ease-in-out;
   &:hover {
-    color: #9477cb;
+    color: #ff0000;
     cursor: pointer;
   }
   @media (max-width: 1000px) {
@@ -64,6 +64,7 @@
 }
 
 .navbar {
+  position: sticky;
   width: 100%;
   position: absolute;
   top: 1%;

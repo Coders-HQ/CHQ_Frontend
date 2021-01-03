@@ -1,13 +1,14 @@
 .btn {
   text-decoration: none;
   display: inline-block;
-  background: #b19cd9;
+  background: #953434;
   color: #fff;
   font-size: 14px;
   padding: 12px 14px;
   transition: background 150ms ease-in-out;
   &:hover {
-    background: #6a44b2;
+    background: #da0202;
+    cursor: pointer;
   }
 }
 
