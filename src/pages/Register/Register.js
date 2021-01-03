@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import Error from "./Error";
+import Message from "./Message";
 import {
   Button,
   CssBaseline,
@@ -14,59 +15,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { red } from "@material-ui/core/colors";
 import Logo from "../../Components/GlobalComponents/Logo";
-import AuthService from "../../Services/auth.service";
+import { register, isAuth } from "../../Services/auth.service";
 import { isEmail } from "validator";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import Loading from "../../Components/GlobalComponents/Loading";
 
 const required = (value) => {
   if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
-
-const validEmail = (value) => {
-  if (!isEmail(value)) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This is not a valid email.
-      </div>
-    );
-  }
-};
-
-const vusername = (value) => {
-  if (value.length < 4 || value.length > 254) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The username must be atleast 4 characters.
-      </div>
-    );
-  }
-};
-
-const vpassword = (value) => {
-  if (value.length < 6 || value.length > 254) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The password must be atleast 8 characters.
-      </div>
-    );
-  }
-};
-
-const vconfirmpassword = (value) => {
-  if ((value.length < 6 || value.length > 254) && value === vpassword) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        Confirm password must match password
-      </div>
-    );
+    console.log("");
   }
 };
 
@@ -87,7 +45,18 @@ const Register = (props) => {
   // Error Handling
   const [successful, setSuccessful] = useState(false);
   const [isError, setError] = useState(false);
+  const [isEmailError, setEmailError] = useState(false);
+  const [isUsernameError, setUsernameError] = useState(false);
+  const [isPasswordError, setPasswordError] = useState(false);
+  const [isConfirmPassError, setConfirmPassError] = useState(false);
+
+  // Message Setters
   const [message, setMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [emailMessage, setEmailMessage] = useState("");
+  const [usernameMessage, setUsernameMessage] = useState("");
+  const [passwordMessage, setPasswordMessage] = useState("");
+  const [confirmPassMessage, setConfirmPassMessage] = useState("");
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
@@ -114,25 +83,73 @@ const Register = (props) => {
 
     setMessage("");
     setSuccessful(false);
+    setLoading(true);
 
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.register(username, email, password).then(
+      register(username, email, password, confirmPassword).then(
         (response) => {
-          setMessage(response.data.message);
-          setSuccessful(true);
+          if (response.data.key) {
+            setMessage("Success! Verification email sent to " + email);
+            setSuccessful(true);
+            setLoading(false);
+            setEmailError(false);
+            setUsernameError(false);
+            setPasswordError(false);
+            setConfirmPassError(false);
+            setError(false);
+          }
         },
         (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+          console.log(error.response);
+          const resMessage = error.response && error.response.data;
+          if (!(resMessage.email === undefined)) {
+            setEmailMessage(resMessage.email[0]);
+            setSuccessful(false);
+            setError(true);
+            setEmailError(true);
+          } else {
+            setEmailError(false);
+          }
 
-          setMessage(resMessage);
-          setSuccessful(false);
+          if (!(resMessage.username === undefined)) {
+            setUsernameMessage(resMessage.username[0]);
+            setSuccessful(false);
+            setError(true);
+            setUsernameError(true);
+          } else {
+            setUsernameError(false);
+          }
+
+          if (!(resMessage.password1 === undefined)) {
+            setPasswordMessage(resMessage.password1[0]);
+            setSuccessful(false);
+            setError(true);
+            setPasswordError(true);
+          } else {
+            setPasswordError(false);
+          }
+
+          if (!(resMessage.password2 === undefined)) {
+            setConfirmPassMessage(resMessage.password2[0]);
+            setSuccessful(false);
+            setError(true);
+            setConfirmPassError(true);
+          } else {
+            setConfirmPassError(false);
+          }
+
+          if (!(resMessage.non_field_errors === undefined)) {
+            setErrorMessage(resMessage.non_field_errors[0]);
+            setSuccessful(false);
+            setError(true);
+          } else {
+            setMessage("Unknown Error");
+            setSuccessful(false);
+            setError(true);
+          }
+          setLoading(false);
         }
       );
     }
@@ -146,13 +163,63 @@ const Register = (props) => {
         <Typography component="h1" variant="h5">
           Register
         </Typography>
-        <Error status={isError} />
+        <Error
+          status={isError} // This decides if the error should show or not
+          message={errorMessage}
+        />
+        <Message
+          status={successful} // This decides if the error should show or not
+          message={message}
+        />
         <Form
           className={classes.form}
           noValidate
           onSubmit={handleRegister}
           ref={form}
         >
+          <Input
+            type="hidden"
+            name="email"
+            value={email}
+            validations={[required]}
+          />
+          <Input
+            type="hidden"
+            name="username"
+            value={username}
+            validations={[required]}
+          />
+
+          <Input
+            type="hidden"
+            name="password"
+            value={password}
+            validations={[required]}
+          />
+
+          <Input
+            type="hidden"
+            name="confirmpassword"
+            value={confirmPassword}
+            validations={[required]}
+          />
+          <TextField
+            className={classes.field}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="email"
+            label="Email Address"
+            type="email"
+            id="email"
+            autoComplete="off"
+            value={email}
+            onChange={onChangeEmail}
+            validations={[required]}
+            error={isEmailError}
+            helperText={isEmailError ? emailMessage : ""}
+          />
           <TextField
             className={classes.field}
             variant="outlined"
@@ -165,7 +232,9 @@ const Register = (props) => {
             autoFocus
             autoComplete="off"
             onChange={onChangeUsername}
-            validations={[required, vusername]}
+            validations={[required]}
+            error={isUsernameError}
+            helperText={isUsernameError ? usernameMessage : ""}
           />
           <TextField
             className={classes.field}
@@ -180,7 +249,9 @@ const Register = (props) => {
             autoComplete="current-password"
             value={password}
             onChange={onChangePassword}
-            validations={[required, vpassword]}
+            validations={[required]}
+            error={isPasswordError}
+            helperText={isPasswordError ? passwordMessage : ""}
           />
 
           <TextField
@@ -196,23 +267,9 @@ const Register = (props) => {
             autoComplete="current-password"
             value={confirmPassword}
             onChange={onChangeConfirmPassword}
-            validations={[required, vconfirmpassword]}
-          />
-
-          <TextField
-            className={classes.field}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="email"
-            label="Email Address"
-            type="email"
-            id="email"
-            autoComplete="off"
-            value={email}
-            onChange={onChangeEmail}
-            validations={[required, validEmail]}
+            validations={[required]}
+            error={isConfirmPassError}
+            helperText={isConfirmPassError ? confirmPassMessage : ""}
           />
           <Button
             type="submit"
@@ -245,8 +302,10 @@ const Register = (props) => {
               </Link>
             </Grid>
           </Grid>
+          <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
       </div>
+      <Loading loading={loading} />
     </Container>
   );
 };

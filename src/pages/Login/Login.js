@@ -15,15 +15,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { red } from "@material-ui/core/colors";
 import Logo from "../../Components/GlobalComponents/Logo";
-import AuthService from "../../Services/auth.service";
+import { login, isAuth, getCurrentUserData } from "../../Services/auth.service";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import { set } from "lodash";
 
 const required = (value) => {
   if (!value) {
-    console.log("fields required");
+    console.log("");
   }
 };
 
@@ -64,11 +63,10 @@ const Login = (props) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.login(username, password).then(
+      login(username, password).then(
         () => {
           props.history.push("/profile");
-          window.location.reload();
-          AuthService.getCurrentUserData().then();
+          getCurrentUserData().then();
         },
         (error) => {
           const resMessage = error.response && error.response.data;

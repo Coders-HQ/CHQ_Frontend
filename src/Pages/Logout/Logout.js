@@ -1,14 +1,8 @@
-import React from "react";
-
-const Logout = () => {
-  return (
-    <div>
-      <h1>
-        Welcome <span className="user__name">Abdulrahman</span>
-        <button className="logout__button">Logout</button>
-      </h1>
-    </div>
-  );
+import React, { useEffect } from "react";
+import { logout, isAuth } from "../../Services/auth.service";
+const Logout = (props) => {
+  isAuth ? logout() : console.log("");
+  props.history.push("/");
 };
 
 export default Logout;

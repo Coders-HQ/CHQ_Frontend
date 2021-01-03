@@ -12,16 +12,16 @@ const errorStyles = makeStyles((theme) => ({
   },
 }));
 
-const Error = ({ status, errorError }) => {
+const Message = ({ status, message }) => {
   const classes = errorStyles();
 
   return (
     <Collapse className="errorDiv" in={status}>
       <div className={classes.root}>
-        <Alert severity="error">{errorError}</Alert>
+        <Alert severity="success">{message}</Alert>
       </div>
     </Collapse>
   );
 };
 
-export default Error;
+export default Message;
