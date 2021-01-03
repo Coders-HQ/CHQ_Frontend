@@ -6,7 +6,28 @@ The main Coders-HQ website is hosted at [codershq.ae](https://codershq.ae)
 
 #### The frontend uses the following project file structure (The main project file structure is in the backend docs):
 
-(New File Structure will be added here)
+📦src  
+ ┣ 📂Components  
+ ┃ ┣ 📂GlobalComponents  
+ ┃ ┗ 📂Main  
+ ┣ 📂Images  
+ ┃ ┣ 📂Logo  
+ ┃ ┃ ┣ 📂png  
+ ┃ ┃ ┗ 📂svg  
+ ┃ ┗ 📂Other  
+ ┣ 📂Pages  
+ ┃ ┣ 📂Home  
+ ┃ ┃ ┣ 📂Navbar  
+ ┃ ┣ 📂Login  
+ ┃ ┣ 📂Logout  
+ ┃ ┗ 📂Register  
+ ┣ 📂Services  
+ ┣ 📂Styles  
+ ┣ 📂Videos  
+ ┣ 📜App.js  
+ ┣ 📜index.css  
+ ┣ 📜index.js  
+ ┗ 📜serviceWorker.js  
 
 In the project directory, you can run:
 
