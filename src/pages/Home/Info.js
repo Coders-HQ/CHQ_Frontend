@@ -2,24 +2,10 @@
 
 import React from "react";
 import Button from "../../Components/GlobalComponents/Button";
-import TextLoop from "react-text-loop";
+import TextLoop from "react-text-loop"; // Used this package to create a text loop effect
 
-const user = JSON.parse(localStorage.getItem("userData")).username; // Represents user's first name (Work in Progress)
-const Auth = () => {
-  if (localStorage.getItem("accessToken") != null) {
-    return true;
-  } else {
-    return false;
-  }
-};
 const Info = () => (
   <div className="info">
-    <div className={Auth ? "welcomeContainer" : "welcomeContainer hiddenDiv"}>
-      <h1 className="welcomeMessage">
-        {Auth ? "Welcome back " : "Hello there!"}{" "}
-        <span className="firstname">{user}</span>
-      </h1>
-    </div>
     <h1 className="maintext">
       <TextLoop
         className="purple"
@@ -33,8 +19,8 @@ const Info = () => (
           "Making",
         ]}
       ></TextLoop>{" "}
-      the future using code.
-      <h1 className="subtext">Coders HQ</h1>
+      the future using code. <br />
+      <span className="subtext">Coders HQ</span>
     </h1>
   </div>
 );
