@@ -2,6 +2,19 @@ import axios from "axios";
 
 const API_URL = "https://coders-hq.herokuapp.com/auth/";
 
+// Checks if the User is authenticated or not
+const isAuth = () => {
+  if (
+    localStorage.getItem("accessToken") !== null &&
+    localStorage.getItem("userData") !== null
+  ) {
+    return true; // Do this only if use is authenticated
+  } else {
+    return false; // Do this if user is not authenticated
+  }
+};
+
+// Adds user data to database
 const register = (username, email, password1, password2) => {
   return axios
     .post(API_URL + "register/", {
@@ -11,13 +24,11 @@ const register = (username, email, password1, password2) => {
       email,
     })
     .then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
+      return response;
     });
 };
 
+// Adds accessToken & userData to localStorage
 const login = (username, password) => {
   return axios
     .post(API_URL + "login/", {
@@ -36,6 +47,7 @@ const login = (username, password) => {
         };
 
         axios(config).then((response2) => {
+          console.log(response2);
           localStorage.setItem("userData", JSON.stringify(response2.data));
         });
       }
@@ -45,15 +57,27 @@ const login = (username, password) => {
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.removeItem("userData");
+  localStorage.removeItem("accessToken");
+  window.location.reload();
+  console.log("Logout completed"); // for testing/dev purposes
 };
 
 const getLocalToken = () => {
   return localStorage.getItem("accessToken");
 };
 
+// Gets username from localstorage
+const getUsername = () => {
+  if (localStorage.getItem("userData") !== null) {
+    return JSON.parse(localStorage.getItem("userData")).username;
+  } else {
+    return "";
+  }
+};
+
 const getCurrentUserData = () => {
-  const token = getLocalToken();
+  const token = localStorage.getItem("accessToken");
   if (token !== null) {
     const config = {
       method: "get",
@@ -64,16 +88,18 @@ const getCurrentUserData = () => {
     };
 
     return axios(config).then(function (response) {
-      localStorage.setItem("userData", response.data);
+      localStorage.setItem("userData", JSON.stringify(response.data));
       return response.data;
     });
   }
 };
 
-export default {
+export {
+  isAuth,
   register,
   login,
   logout,
   getLocalToken,
   getCurrentUserData,
+  getUsername,
 };
