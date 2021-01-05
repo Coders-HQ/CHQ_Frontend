@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "@emotion/core";
-import FadeLoader from "react-spinners/FadeLoader";
+import RiseLoader from "react-spinners/RiseLoader";
 import Fade from "@material-ui/core/Fade";
 
 const Loading = ({ loading }) => {
@@ -17,7 +17,7 @@ const Loading = ({ loading }) => {
   return (
     <Fade in={loading}>
       <div className="loading">
-        <FadeLoader
+        <RiseLoader
           css={override}
           size={50}
           color={"rgb(255,0,0)"}
