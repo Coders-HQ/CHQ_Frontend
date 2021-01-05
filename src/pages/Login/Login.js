@@ -64,9 +64,10 @@ const Login = (props) => {
 
     if (checkBtn.current.context._errors.length === 0) {
       login(username, password).then(
-        () => {
-          props.history.push("/profile");
-          getCurrentUserData().then();
+        async () => {
+          await getCurrentUserData().then();
+          await props.history.push("/");
+          window.location.reload();
         },
         (error) => {
           const resMessage = error.response && error.response.data;
