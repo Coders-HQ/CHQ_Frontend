@@ -5,7 +5,7 @@ You may find the Backend repository in [CHQ_Backend](https://github.com/Coders-H
 The main Coders-HQ website is hosted at [codershq.ae](https://codershq.ae)
 
 #### The frontend uses the following project file structure (The main project file structure is in the backend docs):
-
+### (Should be updated after each pull request/push)
 📦src  
  ┣ 📂Components  
  ┃ ┣ 📂GlobalComponents  
