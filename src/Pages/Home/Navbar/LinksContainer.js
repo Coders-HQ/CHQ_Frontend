@@ -29,11 +29,24 @@ const LinksContainer = ({ hidden }) => {
       {
         // If the user is authenticated it will show the register and login otherwise only logout button
         isAuthenticated ? (
-          <Button text="LOGOUT" linkTo="/logout" />
+          <div className="btn-group">
+            <Button className="left-btn" text="DASHBOARD" linkTo="/dashboard" />
+            <Button className="right-btn" text="LOGOUT" linkTo="/logout" />
+          </div>
         ) : (
-          <div>
-            <Button text="JOIN NOW" linkTo="/register" className="reg-btn" />
-            <Button text="LOGIN" linkTo="/login" className="log-btn" />
+          <div className="btn-group">
+            <Button
+              className="left-btn"
+              text="JOIN NOW"
+              linkTo="/register"
+              className="reg-btn"
+            />
+            <Button
+              className="right-btn"
+              text="LOGIN"
+              linkTo="/login"
+              className="log-btn"
+            />
           </div>
         )
 
