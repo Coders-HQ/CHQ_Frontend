@@ -15,10 +15,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { red } from "@material-ui/core/colors";
 import Logo from "../../Components/GlobalComponents/Logo";
-import { login, isAuth, getCurrentUserData } from "../../Services/auth.service";
+import { login, getCurrentUserData } from "../../Services/auth.service";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import history from "../../history";
 
 const required = (value) => {
   if (!value) {
@@ -66,7 +67,7 @@ const Login = (props) => {
       login(username, password).then(
         async () => {
           await getCurrentUserData().then();
-          await props.history.push("/");
+          await history.push("/");
           window.location.reload();
         },
         (error) => {

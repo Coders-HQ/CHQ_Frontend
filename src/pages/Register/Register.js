@@ -15,7 +15,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { red } from "@material-ui/core/colors";
 import Logo from "../../Components/GlobalComponents/Logo";
-import { register, isAuth } from "../../Services/auth.service";
+import { register } from "../../Services/auth.service";
 import { isEmail } from "validator";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -90,6 +90,7 @@ const Register = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       register(username, email, password, confirmPassword).then(
         (response) => {
+          console.log(response);
           if (response.data.key) {
             setMessage("Success! Verification email sent to " + email);
             setSuccessful(true);

@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { logout, isAuth } from "../../Services/auth.service";
-const Logout = (props) => {
-  isAuth ? logout() : console.log("");
-  props.history.push("/");
+import { logout } from "../../Services/auth.service";
+import { BrowserRouter as Redirect } from "react-router-dom";
+const Logout = () => {
+  logout();
+  window.location.reload();
 };
 
 export default Logout;
