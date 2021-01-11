@@ -31,10 +31,12 @@ const Main = ({ props }) => {
       userHasAuthenticated(true);
       setLoading(false);
       console.log("User is Authenticated");
+      console.log(isAuthenticated);
     } catch (e) {
       userHasAuthenticated(false);
       setLoading(false);
       console.log("User not Authenticated");
+      console.log(isAuthenticated);
     }
   }
   return (
@@ -77,7 +79,11 @@ const Main = ({ props }) => {
           )}
         </Route>
         <Route exact path="/">
-          {isLoading ? <Loading loading={isLoading} /> : <Home />}
+          {isLoading ? (
+            <Loading loading={isLoading} />
+          ) : (
+            <Home isAuth={isAuthenticated} />
+          )}
         </Route>
         <Route>
           {isLoading ? <Loading loading={isLoading} /> : <NotFound />}

@@ -4,20 +4,8 @@ import React, { useEffect, useState } from "react";
 import Link from "./Link";
 import Button from "../../../Components/GlobalComponents/Button";
 import Github from "./Github";
-import { logout, isAuth } from "../../../Services/auth.service";
 
-const LinksContainer = ({ hidden }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    if (isAuth()) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-    }
-    console.log("hi from useeffect");
-  }, [isAuthenticated]);
-
+const LinksContainer = ({ hidden, isAuth }) => {
   return (
     <div className={(hidden ? "hidden" : "") + " linksContainer"}>
       <div className="mid">
@@ -28,7 +16,7 @@ const LinksContainer = ({ hidden }) => {
       </div>
       {
         // If the user is authenticated it will show the register and login otherwise only logout button
-        isAuthenticated ? (
+        isAuth ? (
           <div className="btn-group">
             <Button className="left-btn" text="DASHBOARD" linkTo="/dashboard" />
             <Button className="right-btn" text="LOGOUT" linkTo="/logout" />
