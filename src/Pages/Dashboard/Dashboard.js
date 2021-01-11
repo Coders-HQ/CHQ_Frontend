@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import Container from "@material-ui/core/Container";
-import authHeader from "../../Services/auth-header";
-console.log(authHeader());
 
 const Dashboard = () => {
   return (
