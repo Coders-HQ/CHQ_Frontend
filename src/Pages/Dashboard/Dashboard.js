@@ -11,8 +11,8 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-wrapper">
-      <Main userData={userData} />
       <Drawer userData={userData} drawerStatus={true} />
+      <Main userData={userData} />
     </div>
   );
 };
