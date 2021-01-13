@@ -1,0 +1,71 @@
+.dashboard-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20rem;
+  height: 100%;
+  background: rgb(32, 32, 32);
+  box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.623);
+  overflow-y: scroll;
+  transform: translateX(-100%);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.bold {
+  font-weight: bolder;
+}
+
+.logo-wrapper {
+  margin-top: 1rem;
+  margin-botton: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.active-drawer {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.5);
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(155, 155, 155, 0.5);
+  border-radius: 20px;
+  border: transparent;
+}
+
+.dashboard-main {
+  width: 85%;
+  height: 100%;
+  text-align: center;
+  position: relative;
+  float: right;
+  background-color: red;
+}
+
+// Mobile, Tablets support
+@media screen and (max-width: 768px) {
+  .dashboard-drawer {
+    width: 100%;
+  }
+}
+
+.user-section {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
