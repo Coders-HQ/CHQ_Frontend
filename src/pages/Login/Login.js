@@ -191,9 +191,9 @@ const Login = (props) => {
             <CheckButton style={{ display: "none" }} ref={checkBtn} />
           </Form>
         </div>
-        <Loading loading={loading} />
       </Container>
       <div>
+        <Loading loading={loading} />
         <Overlay />
         <Background />
       </div>

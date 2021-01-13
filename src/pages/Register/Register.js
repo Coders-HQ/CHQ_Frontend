@@ -172,10 +172,6 @@ const Register = (props) => {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <Error
-            status={isError} // This decides if the error should show or not
-            message={errorMessage}
-          />
           <Message
             status={successful} // This decides if the error should show or not
             message={message}
@@ -314,11 +310,11 @@ const Register = (props) => {
             <CheckButton style={{ display: "none" }} ref={checkBtn} />
           </Form>
         </div>
-        <Loading loading={loading} />
       </Container>
       <div>
         <Overlay />
         <Background />
+        <Loading loading={loading} />
       </div>
     </div>
   );
