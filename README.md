@@ -15,7 +15,7 @@ TODO:
 - CHQ CV Page/Component (Should be part of the profile)
 
 #### The frontend uses the following project file structure (The main project file structure is in the backend docs):
-
+### (Should be updated after each pull request/push)
 📦src  
  ┣ 📂Components  
  ┃ ┣ 📂GlobalComponents  
