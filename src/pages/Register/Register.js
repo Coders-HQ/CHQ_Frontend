@@ -20,6 +20,8 @@ import { isEmail } from "validator";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import Background from "./Background";
+import Overlay from "./Overlay";
 import Loading from "../../Components/GlobalComponents/Loading";
 
 const required = (value) => {
@@ -157,190 +159,210 @@ const Register = (props) => {
   };
 
   return (
-    <Container className={classes.wrapper} component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <img
-          className={classes.img}
-          src={Logo}
-          width="300rem"
-          alt="Coders HQ Logo"
-        />
-        <Typography component="h1" variant="h5">
-          Register
-        </Typography>
-        <Error
-          status={isError} // This decides if the error should show or not
-          message={errorMessage}
-        />
-        <Message
-          status={successful} // This decides if the error should show or not
-          message={message}
-        />
-        <Form
-          className={classes.form}
-          noValidate
-          onSubmit={handleRegister}
-          ref={form}
-        >
-          <Input
-            type="hidden"
-            name="email"
-            value={email}
-            validations={[required]}
+    <div>
+      <Container className={classes.wrapper} component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <img
+            className={classes.img}
+            src={Logo}
+            width="300rem"
+            alt="Coders HQ Logo"
           />
-          <Input
-            type="hidden"
-            name="username"
-            value={username}
-            validations={[required]}
-          />
-
-          <Input
-            type="hidden"
-            name="password"
-            value={password}
-            validations={[required]}
-          />
-
-          <Input
-            type="hidden"
-            name="confirmpassword"
-            value={confirmPassword}
-            validations={[required]}
-          />
-          <TextField
-            className={classes.field}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="email"
-            label="Email Address"
-            type="email"
-            id="email"
-            autoComplete="off"
-            autoFocus
-            value={email}
-            onChange={onChangeEmail}
-            validations={[required]}
-            error={isEmailError}
-            helperText={isEmailError ? emailMessage : ""}
-          />
-          <TextField
-            className={classes.field}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoComplete="off"
-            onChange={onChangeUsername}
-            validations={[required]}
-            error={isUsernameError}
-            helperText={isUsernameError ? usernameMessage : ""}
-          />
-          <TextField
-            className={classes.field}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={onChangePassword}
-            validations={[required]}
-            error={isPasswordError}
-            helperText={isPasswordError ? passwordMessage : ""}
-          />
-
-          <TextField
-            className={classes.field}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="confirm-password"
-            label="Confirm Password"
-            type="password"
-            id="confirm-password"
-            autoComplete="current-password"
-            value={confirmPassword}
-            onChange={onChangeConfirmPassword}
-            validations={[required]}
-            error={isConfirmPassError}
-            helperText={isConfirmPassError ? confirmPassMessage : ""}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="secondary"
-            className={classes.submit}
-          >
+          <Typography component="h1" variant="h5">
             Register
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link
-                href="/"
-                variant="body2"
-                color="red"
-                className={classes.link}
-              >
-                Back to home page
-              </Link>
+          </Typography>
+          <Error
+            status={isError} // This decides if the error should show or not
+            message={errorMessage}
+          />
+          <Message
+            status={successful} // This decides if the error should show or not
+            message={message}
+          />
+          <Form
+            className={classes.form}
+            noValidate
+            onSubmit={handleRegister}
+            ref={form}
+          >
+            <Input
+              type="hidden"
+              name="email"
+              value={email}
+              validations={[required]}
+            />
+            <Input
+              type="hidden"
+              name="username"
+              value={username}
+              validations={[required]}
+            />
+
+            <Input
+              type="hidden"
+              name="password"
+              value={password}
+              validations={[required]}
+            />
+
+            <Input
+              type="hidden"
+              name="confirmpassword"
+              value={confirmPassword}
+              validations={[required]}
+            />
+            <TextField
+              className={classes.field}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="email"
+              label="Email Address"
+              type="email"
+              id="email"
+              autoComplete="off"
+              autoFocus
+              value={email}
+              onChange={onChangeEmail}
+              validations={[required]}
+              error={isEmailError}
+              helperText={isEmailError ? emailMessage : ""}
+            />
+            <TextField
+              className={classes.field}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="off"
+              onChange={onChangeUsername}
+              validations={[required]}
+              error={isUsernameError}
+              helperText={isUsernameError ? usernameMessage : ""}
+            />
+            <TextField
+              className={classes.field}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={onChangePassword}
+              validations={[required]}
+              error={isPasswordError}
+              helperText={isPasswordError ? passwordMessage : ""}
+            />
+
+            <TextField
+              className={classes.field}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="confirm-password"
+              label="Confirm Password"
+              type="password"
+              id="confirm-password"
+              autoComplete="current-password"
+              value={confirmPassword}
+              onChange={onChangeConfirmPassword}
+              validations={[required]}
+              error={isConfirmPassError}
+              helperText={isConfirmPassError ? confirmPassMessage : ""}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="secondary"
+              className={classes.submit}
+            >
+              Register
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link
+                  href="/"
+                  variant="body2"
+                  color="red"
+                  className={classes.link}
+                >
+                  Back to home page
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link
+                  href="/login"
+                  variant="body2"
+                  color="red"
+                  className={classes.link}
+                >
+                  {"Already have an account? Login"}
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Link
-                href="/login"
-                variant="body2"
-                color="red"
-                className={classes.link}
-              >
-                {"Already have an account? Login"}
-              </Link>
-            </Grid>
-          </Grid>
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
+            <CheckButton style={{ display: "none" }} ref={checkBtn} />
+          </Form>
+        </div>
+        <Loading loading={loading} />
+      </Container>
+      <div>
+        <Overlay />
+        <Background />
       </div>
-      <Loading loading={loading} />
-    </Container>
+    </div>
   );
 };
 
 // Material-UI Styling
 
 const useStyles = makeStyles((theme) => ({
+  video: {
+    backgroundColor: "#000",
+    color: "#000",
+  },
   wrapper: {
+    zIndex: "10",
     backgroundColor: "#FFF",
-    maxHeight: "60rem",
+    maxHeight: "50rem",
     borderRadius: "15px",
     boxShadow: "2px 2px 50px rgba(0, 0, 0, 0.35)",
+    margin: "0",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
   },
   paper: {
+    zIndex: "10",
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
   },
   avatar: {
+    zIndex: "3",
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
+    zIndex: "3",
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
     marginBottom: "2rem",
   },
   img: {
+    zIndex: "3",
     marginTop: "1rem",
   },
   submit: {
@@ -361,6 +383,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   field: {
+    zIndex: "3",
     "& label.Mui-focused": {
       color: "red",
     },

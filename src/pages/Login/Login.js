@@ -19,6 +19,8 @@ import { login, getCurrentUserData } from "../../Services/auth.service";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import Overlay from "./Overlay";
+import Background from "./Background";
 import history from "../../history";
 
 const required = (value) => {
@@ -90,106 +92,112 @@ const Login = (props) => {
   };
 
   return (
-    <Container className={classes.wrapper} component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <img
-          className={classes.img}
-          src={Logo}
-          width="300rem"
-          alt="Coders HQ Logo"
-        />
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <Message
-          status={isError} // This decides if the error should show or not
-          errorMessage={message}
-        />
-        <Form
-          className={classes.form}
-          noValidate
-          onSubmit={handleLogin}
-          ref={form}
-        >
-          <Input
-            type="hidden"
-            name="username"
-            value={username}
-            validations={[required]}
+    <div>
+      <Container className={classes.wrapper} component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <img
+            className={classes.img}
+            src={Logo}
+            width="300rem"
+            alt="Coders HQ Logo"
           />
-
-          <Input
-            type="hidden"
-            name="password"
-            value={password}
-            validations={[required]}
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Message
+            status={isError} // This decides if the error should show or not
+            errorMessage={message}
           />
-          <TextField
-            className={classes.field}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="Username"
-            autoFocus
-            autoComplete="off"
-            name="username"
-            value={username}
-            onChange={onChangeUsername}
-          />
-          <TextField
-            className={classes.field}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={onChangePassword}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="secondary"
-            className={classes.submit}
-            disabled={false}
+          <Form
+            className={classes.form}
+            noValidate
+            onSubmit={handleLogin}
+            ref={form}
           >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link
-                href="#"
-                variant="body2"
-                color="red"
-                className={classes.link}
-              >
-                Forgot password?
-              </Link>
+            <Input
+              type="hidden"
+              name="username"
+              value={username}
+              validations={[required]}
+            />
+
+            <Input
+              type="hidden"
+              name="password"
+              value={password}
+              validations={[required]}
+            />
+            <TextField
+              className={classes.field}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              autoFocus
+              autoComplete="off"
+              name="username"
+              value={username}
+              onChange={onChangeUsername}
+            />
+            <TextField
+              className={classes.field}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={onChangePassword}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="secondary"
+              className={classes.submit}
+              disabled={false}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link
+                  href="#"
+                  variant="body2"
+                  color="red"
+                  className={classes.link}
+                >
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link
+                  href="/register"
+                  variant="body2"
+                  color="red"
+                  className={classes.link}
+                >
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Link
-                href="/register"
-                variant="body2"
-                color="red"
-                className={classes.link}
-              >
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
+            <CheckButton style={{ display: "none" }} ref={checkBtn} />
+          </Form>
+        </div>
+        <Loading loading={loading} />
+      </Container>
+      <div>
+        <Overlay />
+        <Background />
       </div>
-      <Loading loading={loading} />
-    </Container>
+    </div>
   );
 };
 
@@ -201,6 +209,11 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "60rem",
     borderRadius: "8px",
     boxShadow: "2px 2px 50px rgba(0, 0, 0, 0.35)",
+    margin: "0",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
   },
   paper: {
     marginTop: theme.spacing(8),
