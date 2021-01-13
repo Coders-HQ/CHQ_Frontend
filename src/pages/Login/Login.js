@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { red } from "@material-ui/core/colors";
-import Logo from "../../Components/GlobalComponents/Logo";
+import Logo from "../../Images/Logo/png/dark_text.png";
 import { login, getCurrentUserData } from "../../Services/auth.service";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -90,10 +90,15 @@ const Login = (props) => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container className={classes.wrapper} component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Logo />
+        <img
+          className={classes.img}
+          src={Logo}
+          width="300rem"
+          alt="Coders HQ Logo"
+        />
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
@@ -127,7 +132,7 @@ const Login = (props) => {
             required
             fullWidth
             id="username"
-            label="Username/Email"
+            label="Username"
             autoFocus
             autoComplete="off"
             name="username"
@@ -191,6 +196,12 @@ const Login = (props) => {
 // Material-UI Styling
 
 const useStyles = makeStyles((theme) => ({
+  wrapper: {
+    backgroundColor: "#FFF",
+    maxHeight: "60rem",
+    borderRadius: "8px",
+    boxShadow: "2px 2px 50px rgba(0, 0, 0, 0.35)",
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -204,6 +215,10 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    marginBottom: "2rem",
+  },
+  img: {
+    marginTop: "1rem",
   },
   submit: {
     color: theme.palette.getContrastText(red[500]),

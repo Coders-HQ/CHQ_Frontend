@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { red } from "@material-ui/core/colors";
-import Logo from "../../Components/GlobalComponents/Logo";
+import Logo from "../../Images/Logo/png/dark_text.png";
 import { register } from "../../Services/auth.service";
 import { isEmail } from "validator";
 import Form from "react-validation/build/form";
@@ -58,14 +58,14 @@ const Register = (props) => {
   const [passwordMessage, setPasswordMessage] = useState("");
   const [confirmPassMessage, setConfirmPassMessage] = useState("");
 
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
-  };
-
   const onChangeEmail = (e) => {
     const email = e.target.value;
     setEmail(email);
+  };
+
+  const onChangeUsername = (e) => {
+    const username = e.target.value;
+    setUsername(username);
   };
 
   const onChangePassword = (e) => {
@@ -157,10 +157,15 @@ const Register = (props) => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container className={classes.wrapper} component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Logo />
+        <img
+          className={classes.img}
+          src={Logo}
+          width="300rem"
+          alt="Coders HQ Logo"
+        />
         <Typography component="h1" variant="h5">
           Register
         </Typography>
@@ -215,6 +220,7 @@ const Register = (props) => {
             type="email"
             id="email"
             autoComplete="off"
+            autoFocus
             value={email}
             onChange={onChangeEmail}
             validations={[required]}
@@ -230,7 +236,6 @@ const Register = (props) => {
             id="username"
             label="Username"
             name="username"
-            autoFocus
             autoComplete="off"
             onChange={onChangeUsername}
             validations={[required]}
@@ -314,6 +319,12 @@ const Register = (props) => {
 // Material-UI Styling
 
 const useStyles = makeStyles((theme) => ({
+  wrapper: {
+    backgroundColor: "#FFF",
+    maxHeight: "60rem",
+    borderRadius: "15px",
+    boxShadow: "2px 2px 50px rgba(0, 0, 0, 0.35)",
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -327,6 +338,10 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    marginBottom: "2rem",
+  },
+  img: {
+    marginTop: "1rem",
   },
   submit: {
     color: theme.palette.getContrastText(red[500]),
