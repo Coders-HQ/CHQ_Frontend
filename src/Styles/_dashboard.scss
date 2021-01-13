@@ -2,14 +2,24 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 20rem;
-  height: 100%;
-  background: rgb(32, 32, 32);
-  box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.623);
+  width: 15rem;
+  height: 41.8%;
+  background: rgb(41, 41, 41);
+  box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.719);
   overflow-y: scroll;
+  overflow-x: hidden;
   transform: translateX(-100%);
   transition: all 0.5s ease;
   opacity: 0;
+  float: left;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.h-break {
+  height: 1px;
+  background-color: rgba(204, 204, 204, 0.616);
+  border: none;
 }
 
 .bold {
@@ -18,20 +28,21 @@
 
 .logo-wrapper {
   margin-top: 1rem;
-  margin-botton: 1rem;
+  margin-bottom: 1rem;
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
 .active-drawer {
-  transform: translateX(0%);
+  transform: translate(6.5%, 4%);
   opacity: 1;
+  margin-right: 30%;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(155, 155, 155, 0.5);
+  scrollbar-color: rgba(255, 255, 255, 0.5);
 }
 
 *::-webkit-scrollbar {
@@ -43,29 +54,57 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba(155, 155, 155, 0.5);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   border: transparent;
 }
 
 .dashboard-main {
-  width: 85%;
-  height: 100%;
+  margin: 0;
+  width: 100%;
+  position: fixed;
   text-align: center;
-  position: relative;
-  float: right;
-  background-color: red;
+  background-color: rgb(255, 255, 255);
+  height: 100%;
+  display: inline-block; /* change the default display type to inline-block */
+  overflow: hidden; /* hide the overflow */
 }
 
 // Mobile, Tablets support
 @media screen and (max-width: 768px) {
   .dashboard-drawer {
-    width: 100%;
+    min-width: 20%;
+    min-height: 51%;
   }
 }
 
-.user-section {
+.user-avatar {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.user-username {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 100%;
+  margin-bottom: 1rem;
+}
+
+.btn-collection {
+  width: 100%;
+  .drawer-btn {
+    text-align: left;
+  }
+  .MuiButton-label {
+    color: white;
+  }
+  .MuiTouchRipple-root {
+    color: white;
+  }
 }
