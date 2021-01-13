@@ -7,7 +7,6 @@
  * - Challenges Page/Component
  * - Thrillacons Page/Component
  * - CHQ CV Page/Component (Should be part of the profile)
- * - Add Background to both Login & Register
  */
 
 import React from "react";
