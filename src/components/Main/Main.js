@@ -16,6 +16,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { authHeader } from "../../Services/auth-header";
+import history from "../../history";
 
 const Main = ({ props }) => {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
@@ -40,9 +41,9 @@ const Main = ({ props }) => {
     }
   }
   return (
-    <Router>
+    <Router history={history}>
       <Switch>
-        <Route exact path="/dashboard">
+        <Route path="/dashboard">
           {isLoading ? (
             <Loading loading={isLoading} />
           ) : isAuthenticated ? (
@@ -51,6 +52,7 @@ const Main = ({ props }) => {
             <Redirect to="/login" />
           )}
         </Route>
+
         <Route exact path="/login">
           {isLoading ? (
             <Loading loading={isLoading} />
@@ -81,8 +83,10 @@ const Main = ({ props }) => {
         <Route exact path="/">
           {isLoading ? (
             <Loading loading={isLoading} />
+          ) : isAuthenticated ? (
+            <Redirect to="/dashboard" />
           ) : (
-            <Home isAuth={isAuthenticated} />
+            <Home />
           )}
         </Route>
         <Route>

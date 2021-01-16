@@ -109,6 +109,7 @@ const Register = (props) => {
           const resMessage = error.response && error.response.data;
           if (!(resMessage.email === undefined)) {
             setEmailMessage(resMessage.email[0]);
+            setErrorMessage("Please check your details");
             setSuccessful(false);
             setError(true);
             setEmailError(true);
@@ -118,6 +119,8 @@ const Register = (props) => {
 
           if (!(resMessage.username === undefined)) {
             setUsernameMessage(resMessage.username[0]);
+            setErrorMessage(resMessage.username[0]);
+            setErrorMessage("Please check your details");
             setSuccessful(false);
             setError(true);
             setUsernameError(true);
@@ -126,7 +129,9 @@ const Register = (props) => {
           }
 
           if (!(resMessage.password1 === undefined)) {
+            setErrorMessage("Please check your details");
             setPasswordMessage(resMessage.password1[0]);
+            setErrorMessage(resMessage.password1[0]);
             setSuccessful(false);
             setError(true);
             setPasswordError(true);
@@ -136,19 +141,22 @@ const Register = (props) => {
 
           if (!(resMessage.password2 === undefined)) {
             setConfirmPassMessage(resMessage.password2[0]);
+            setErrorMessage(resMessage.password2[0]);
             setSuccessful(false);
             setError(true);
             setConfirmPassError(true);
-          } else {
-            setConfirmPassError(false);
           }
 
           if (!(resMessage.non_field_errors === undefined)) {
-            setErrorMessage(resMessage.non_field_errors[0]);
+            setPasswordMessage(resMessage.non_field_errors[0]);
+            setConfirmPassMessage(resMessage.non_field_errors[0]);
+            setErrorMessage("Please check your details");
+            setPasswordError(true);
+            setConfirmPassError(true);
             setSuccessful(false);
             setError(true);
           } else {
-            setMessage("Unknown Error");
+            setErrorMessage("Please check your details");
             setSuccessful(false);
             setError(true);
           }
@@ -172,6 +180,10 @@ const Register = (props) => {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
+          <Error
+            status={isError} // This decides if the error should show or not
+            errorError={errorMessage}
+          />
           <Message
             status={successful} // This decides if the error should show or not
             message={message}
@@ -312,9 +324,9 @@ const Register = (props) => {
         </div>
       </Container>
       <div>
+        <Loading loading={loading} />
         <Overlay />
         <Background />
-        <Loading loading={loading} />
       </div>
     </div>
   );
@@ -328,9 +340,8 @@ const useStyles = makeStyles((theme) => ({
     color: "#000",
   },
   wrapper: {
-    zIndex: "10",
     backgroundColor: "#FFF",
-    maxHeight: "50rem",
+    maxHeight: "52rem",
     borderRadius: "15px",
     boxShadow: "2px 2px 50px rgba(0, 0, 0, 0.35)",
     margin: "0",
@@ -340,25 +351,21 @@ const useStyles = makeStyles((theme) => ({
     transform: "translate(-50%, -50%)",
   },
   paper: {
-    zIndex: "10",
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
   },
   avatar: {
-    zIndex: "3",
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    zIndex: "3",
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
     marginBottom: "2rem",
   },
   img: {
-    zIndex: "3",
     marginTop: "1rem",
   },
   submit: {
@@ -379,7 +386,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   field: {
-    zIndex: "3",
     "& label.Mui-focused": {
       color: "red",
     },
