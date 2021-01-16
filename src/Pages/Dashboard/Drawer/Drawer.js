@@ -1,9 +1,10 @@
 import React from "react";
-import Logo from "../../../Images/Logo/png/light_text.png";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import history from "../../../history";
+import { BrowserRouter as Redirect } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,7 +65,14 @@ const Drawer = ({ userData, drawerStatus }) => {
         <Avatar className={classes.large}>{userData.username[0]}</Avatar>
       </h2>
       <h1 className="user-username">{userData.username}</h1>
-      <Button className={classes.centerbtn} fullWidth={true}>
+      <Button
+        className={classes.centerbtn}
+        fullWidth={true}
+        onClick={() => {
+          history.push("/dashboard/profile");
+          window.location.reload();
+        }}
+      >
         Edit Profile
       </Button>
       <hr className="h-break" />
@@ -75,10 +83,22 @@ const Drawer = ({ userData, drawerStatus }) => {
         variant="text"
         className={classes.btngroup}
       >
-        <Button className={classes.btnLabel} fullWidth={true}>
+        <Button
+          className={classes.btnLabel}
+          fullWidth={true}
+          onClick={() => {
+            window.location = "/dashboard/feed";
+          }}
+        >
           Feed
         </Button>
-        <Button className={classes.btnLabel} fullWidth={true}>
+        <Button
+          className={classes.btnLabel}
+          fullWidth={true}
+          onClick={() => {
+            window.location = "/dashboard/profile";
+          }}
+        >
           Profile
         </Button>
         <Button className={classes.btnLabel} fullWidth={true}>

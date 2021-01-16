@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import Drawer from "./Drawer/Drawer";
-import Main from "./Main/Main";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import Feed from "./Sections/Feed/Feed";
+import Explore from "./Sections/Explore/Explore";
+import Profile from "./Sections/Profile/Profile";
+import Notifications from "./Sections/Notifications/Notifications";
+import Chat from "./Sections/Chat/Chat";
 
 const Dashboard = () => {
   // This gets us the User Data assigned into a state
@@ -12,7 +18,23 @@ const Dashboard = () => {
   return (
     <div className="dashboard-wrapper">
       <Drawer userData={userData} drawerStatus={true} />
-      <Main userData={userData} />
+      <div className="dashboard-main">
+        <Route path="/dashboard/feed">
+          <Feed />
+        </Route>
+        <Route path="/dashboard/profile">
+          <Profile />
+        </Route>
+        <Route path="/dashboard/explore">
+          <Explore />
+        </Route>
+        <Route path="/dashboard/notifications">
+          <Notifications />
+        </Route>
+        <Route path="/dashboard/chat">
+          <Chat />
+        </Route>
+      </div>
     </div>
   );
 };
