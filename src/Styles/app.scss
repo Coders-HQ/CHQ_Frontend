@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;700&display=swap");
 
-/* The Whole Apps Font */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,6 +10,7 @@ html {
   scroll-behavior: smooth;
 }
 
+// Here we import each styling for seperate components, very efficent :okhand:
 @import "./global";
 @import "./navbar";
 @import "./home";

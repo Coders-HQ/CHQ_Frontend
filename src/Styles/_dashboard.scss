@@ -1,3 +1,5 @@
+// This contains all the styling used for Dashboard Component
+
 .dashboard-drawer {
   position: fixed;
   top: 0;
@@ -64,10 +66,13 @@
   width: 100%;
   position: fixed;
   text-align: center;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(56, 56, 56);
   height: 100%;
   display: inline-block; /* change the default display type to inline-block */
   overflow: hidden; /* hide the overflow */
+  h1 {
+    color: white;
+  }
 }
 
 // Mobile, Tablets support
