@@ -7,7 +7,7 @@ const Loading = ({ loading }) => {
   // Can be a string as well. Need to ensure each key-value pair ends with ;
 
   const override = css`
-    zIndex: 3
+    z-index: 4;
     margin: 0;
     position: absolute;
     top: 50%;
