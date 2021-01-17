@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Drawer from "./Drawer/Drawer";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Feed from "./Sections/Feed/Feed";
+import Home from "./Sections/Home/Home";
 import Explore from "./Sections/Explore/Explore";
 import Profile from "./Sections/Profile/Profile";
-import Notifications from "./Sections/Notifications/Notifications";
+import Settings from "./Sections/Settings/Settings";
 import Chat from "./Sections/Chat/Chat";
 
 const Dashboard = () => {
@@ -19,8 +19,8 @@ const Dashboard = () => {
     <div className="dashboard-wrapper">
       <Drawer userData={userData} drawerStatus={true} />
       <div className="dashboard-main">
-        <Route path="/dashboard/feed">
-          <Feed />
+        <Route path="/dashboard/home">
+          <Home />
         </Route>
         <Route path="/dashboard/profile">
           <Profile />
@@ -28,8 +28,8 @@ const Dashboard = () => {
         <Route path="/dashboard/explore">
           <Explore />
         </Route>
-        <Route path="/dashboard/notifications">
-          <Notifications />
+        <Route path="/dashboard/settings">
+          <Settings />
         </Route>
         <Route path="/dashboard/chat">
           <Chat />
