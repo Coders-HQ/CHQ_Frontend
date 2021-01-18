@@ -1,11 +1,11 @@
 import React from "react";
 
-const Feed = () => {
+const Cause = () => {
   return (
     <div>
-      <h1>Feed</h1>
+      <h1>Cause</h1>
     </div>
   );
 };
 
-export default Feed;
+export default Cause;
