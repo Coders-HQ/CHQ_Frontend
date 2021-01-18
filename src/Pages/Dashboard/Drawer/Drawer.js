@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import { Link } from "react-router-dom";
+import HomeIcon from "@material-ui/icons/Home";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import ExploreIcon from "@material-ui/icons/Explore";
+import SettingsIcon from "@material-ui/icons/Settings";
+import PersonIcon from "@material-ui/icons/Person";
+import CloseIcon from "@material-ui/icons/Close";
 import history from "../../../history";
 import { BrowserRouter as Redirect } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
+  typography: {
+    fontFamily: ["Poppins", "sans-serif"].join(","),
+    fontWeight: "300",
+  },
+
   root: {
     display: "flex",
     "& > *": {
@@ -21,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
   btnLabel: {
     justifyContent: "flex-start",
+    paddingTop: "0.75rem",
     paddingLeft: "2rem",
     color: "white",
     transition: "all 0.25s ease",
@@ -54,27 +67,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Drawer = ({ userData, drawerStatus }) => {
+  const [activePage, setActivePage] = useState("");
+  const [innerDrawerStatus, setDrawerStatus] = useState(true);
+
   const classes = useStyles();
   return (
     <div
       className={
-        drawerStatus ? "dashboard-drawer active-drawer" : "dashboard-drawer"
+        drawerStatus && innerDrawerStatus
+          ? "dashboard-drawer active-drawer"
+          : "dashboard-drawer"
       }
     >
-      <h2 className="user-avatar">
-        <Avatar className={classes.large}>{userData.username[0]}</Avatar>
-      </h2>
-      <h1 className="user-username">{userData.username}</h1>
       <Button
         className={classes.centerbtn}
         fullWidth={true}
         onClick={() => {
-          history.push("/dashboard/profile");
-          window.location.reload();
+          setDrawerStatus(false);
         }}
       >
-        Edit Profile
+        <CloseIcon />
+        Close
       </Button>
+      <h2 className="user-avatar">
+        <Avatar className={classes.large}>{userData.username[0]}</Avatar>
+      </h2>
+      <h1 className="user-username">{userData.username}</h1>
       <hr className="h-break" />
       <ButtonGroup
         orientation="vertical"
@@ -86,29 +104,47 @@ const Drawer = ({ userData, drawerStatus }) => {
         <Button
           className={classes.btnLabel}
           fullWidth={true}
-          onClick={() => {
-            window.location = "/dashboard/feed";
-          }}
+          component={Link}
+          to="/u"
         >
-          Feed
+          <HomeIcon style={{ marginRight: "10px" }} />
+          Home
         </Button>
         <Button
           className={classes.btnLabel}
           fullWidth={true}
-          onClick={() => {
-            window.location = "/dashboard/profile";
-          }}
+          component={Link}
+          to="/u/explore"
         >
+          <ExploreIcon style={{ marginRight: "10px" }} />
+          <span className={classes.typography}>Explore</span>
+        </Button>
+        <Button
+          className={classes.btnLabel}
+          fullWidth={true}
+          component={Link}
+          to="/u/profile"
+        >
+          <PersonIcon style={{ marginRight: "10px" }} />
           Profile
         </Button>
-        <Button className={classes.btnLabel} fullWidth={true}>
-          Explore
+        <Button
+          className={classes.btnLabel}
+          fullWidth={true}
+          component={Link}
+          to="/u/settings"
+        >
+          <SettingsIcon style={{ marginRight: "10px" }} />
+          Settings
         </Button>
-        <Button className={classes.btnLabel} fullWidth={true}>
-          Notifications
-        </Button>
-        <Button className={classes.btnLabel} fullWidth={true}>
-          Chat
+        <Button
+          className={classes.btnLabel}
+          fullWidth={true}
+          component={Link}
+          to="/logout"
+        >
+          <ExitToAppIcon style={{ marginRight: "10px" }} />
+          Logout
         </Button>
       </ButtonGroup>
     </div>
