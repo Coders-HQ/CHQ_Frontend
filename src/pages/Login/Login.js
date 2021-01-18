@@ -22,6 +22,7 @@ import CheckButton from "react-validation/build/button";
 import Overlay from "./Overlay";
 import Background from "./Background";
 import history from "../../history";
+import { Link as RouterLink } from "react-router-dom";
 
 const required = (value) => {
   if (!value) {
@@ -169,20 +170,22 @@ const Login = (props) => {
             <Grid container>
               <Grid item xs>
                 <Link
-                  href="#"
+                  to="#"
                   variant="body2"
                   color="red"
                   className={classes.link}
+                  component={RouterLink}
                 >
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
                 <Link
-                  href="/register"
+                  to="/register"
                   variant="body2"
                   color="red"
                   className={classes.link}
+                  component={RouterLink}
                 >
                   {"Don't have an account? Sign Up"}
                 </Link>

@@ -23,6 +23,7 @@ import CheckButton from "react-validation/build/button";
 import Background from "./Background";
 import Overlay from "./Overlay";
 import Loading from "../../Components/GlobalComponents/Loading";
+import { Link as RouterLink } from "react-router-dom";
 
 const required = (value) => {
   if (!value) {
@@ -300,7 +301,8 @@ const Register = (props) => {
             <Grid container>
               <Grid item xs>
                 <Link
-                  href="/"
+                  to="/"
+                  component={RouterLink}
                   variant="body2"
                   color="red"
                   className={classes.link}
@@ -310,7 +312,8 @@ const Register = (props) => {
               </Grid>
               <Grid item>
                 <Link
-                  href="/login"
+                  to="/login"
+                  component={RouterLink}
                   variant="body2"
                   color="red"
                   className={classes.link}
