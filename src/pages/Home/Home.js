@@ -1,8 +1,9 @@
+import React from "react";
+
 import Nav from "./Navbar/Nav";
-import Info from "./Info";
 import Overlay from "./Overlay";
 import Background from "./Background";
-import React from "react";
+import Active from "./Active";
 
 const Home = ({ isAuth }) => {
   return (
@@ -10,7 +11,7 @@ const Home = ({ isAuth }) => {
       <Background />
       <Overlay />
       <Nav isAuth={isAuth} />
-      <Info />
+      <Active />
     </section>
   );
 };

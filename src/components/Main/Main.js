@@ -43,7 +43,7 @@ const Main = ({ props }) => {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/dashboard">
+        <Route path="/u">
           {isLoading ? (
             <Loading loading={isLoading} />
           ) : isAuthenticated ? (
@@ -57,7 +57,7 @@ const Main = ({ props }) => {
           {isLoading ? (
             <Loading loading={isLoading} />
           ) : isAuthenticated ? (
-            <Redirect to="/dashboard" />
+            <Redirect to="/u" />
           ) : (
             <Login />
           )}
@@ -66,7 +66,7 @@ const Main = ({ props }) => {
           {isLoading ? (
             <Loading loading={isLoading} />
           ) : isAuthenticated ? (
-            <Redirect to="/dashboard" />
+            <Redirect to="/u" />
           ) : (
             <Register />
           )}
@@ -80,13 +80,22 @@ const Main = ({ props }) => {
             <Redirect to="/" />
           )}
         </Route>
+        <Route path="/w">
+          {isLoading ? (
+            <Loading loading={isLoading} />
+          ) : isAuthenticated ? (
+            <Redirect to="/u" />
+          ) : (
+            <Home />
+          )}
+        </Route>
         <Route exact path="/">
           {isLoading ? (
             <Loading loading={isLoading} />
           ) : isAuthenticated ? (
-            <Redirect to="/dashboard" />
+            <Redirect to="/u" />
           ) : (
-            <Home />
+            <Redirect to="/w/home" />
           )}
         </Route>
         <Route>
@@ -99,7 +108,7 @@ const Main = ({ props }) => {
 
 const LoggedInRoutes = [
   <Route exact path="/" component={Home} />,
-  <Route exact path="/dashboard" component={Dashboard} />,
+  <Route exact path="/u" component={Dashboard} />,
 ];
 
 const LoggedOutRoutes = [

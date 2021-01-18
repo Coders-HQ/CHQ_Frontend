@@ -19,19 +19,19 @@ const Dashboard = () => {
     <div className="dashboard-wrapper">
       <Drawer userData={userData} drawerStatus={true} />
       <div className="dashboard-main">
-        <Route path="/dashboard/home">
+        <Route exact path="/u">
           <Home />
         </Route>
-        <Route path="/dashboard/profile">
+        <Route path="/u/profile">
           <Profile />
         </Route>
-        <Route path="/dashboard/explore">
+        <Route path="/u/explore">
           <Explore />
         </Route>
-        <Route path="/dashboard/settings">
+        <Route path="/u/settings">
           <Settings />
         </Route>
-        <Route path="/dashboard/chat">
+        <Route path="/u/chat">
           <Chat />
         </Route>
       </div>
