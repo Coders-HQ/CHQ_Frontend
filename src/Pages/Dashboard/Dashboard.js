@@ -7,6 +7,8 @@ import Explore from "./Sections/Explore/Explore";
 import Profile from "./Sections/Profile/Profile";
 import Settings from "./Sections/Settings/Settings";
 import Chat from "./Sections/Chat/Chat";
+import NotFound from "../NotFound/NotFound";
+import Header from "./Drawer/Header";
 
 const Dashboard = () => {
   // This gets us the User Data assigned into a state
@@ -17,23 +19,32 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-wrapper">
-      <Drawer userData={userData} drawerStatus={true} />
       <div className="dashboard-main">
-        <Route exact path="/u">
-          <Home />
-        </Route>
-        <Route path="/u/profile">
-          <Profile />
-        </Route>
-        <Route path="/u/explore">
-          <Explore />
-        </Route>
-        <Route path="/u/settings">
-          <Settings />
-        </Route>
-        <Route path="/u/chat">
-          <Chat />
-        </Route>
+        <Switch>
+          <Route exact path="/u">
+            <Header />
+            <Drawer userData={userData} drawerStatus={true} />
+            <Home />
+          </Route>
+          <Route exact path="/u/profile/:username">
+            <Header />
+            <Drawer userData={userData} drawerStatus={true} />
+            <Profile />
+          </Route>
+          <Route exact path="/u/explore">
+            <Header />
+            <Drawer userData={userData} drawerStatus={true} />
+            <Explore />
+          </Route>
+          <Route exact path="/u/settings">
+            <Header />
+            <Drawer userData={userData} drawerStatus={true} />
+            <Settings />
+          </Route>
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
       </div>
     </div>
   );
