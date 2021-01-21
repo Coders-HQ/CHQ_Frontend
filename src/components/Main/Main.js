@@ -40,6 +40,7 @@ const Main = ({ props }) => {
       console.log(isAuthenticated);
     }
   }
+
   return (
     <Router history={history}>
       <Switch>
