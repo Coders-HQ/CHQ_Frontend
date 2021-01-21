@@ -87,41 +87,78 @@ const useStyles = makeStyles((theme) => ({
       color: "white",
     },
   },
+  activeBtn: {
+    justifyContent: "flex-start",
+    paddingRight: "1rem",
+    paddingLeft: "1rem",
+    backgroundColor: "rgba(255,0,0 0.5)",
+    color: "red",
+    fontSize: "16px",
+    transition: "all 0.25s ease",
+    borderRadiusTopRight: "15px",
+    borderRadiusBottomRight: "15px",
+    borderBottom: "0.5px solid rgba(255, 0, 0, 1)",
+    "&:hover": {
+      backgroundColor: "rgba(255,0,0, 1)",
+      color: "white",
+    },
+  },
 }));
 
 const LinksContainer = ({ hidden, isAuth }) => {
   const classes = useStyles();
+  const [activeButton, setActiveButton] = useState("");
   return (
     <div className={(hidden ? "hidden" : "") + " linksContainer"}>
       <Button
         variant="outlined"
-        className={classes.btnLabel}
+        className={
+          activeButton === "home" ? classes.activeBtn : classes.btnLabel
+        }
         component={Link}
         to="/w/home"
+        onClick={() => {
+          setActiveButton("home");
+        }}
       >
         Home
       </Button>
       <Button
         variant="outlined"
-        className={classes.btnLabel}
+        className={
+          activeButton === "incentive" ? classes.activeBtn : classes.btnLabel
+        }
         component={Link}
         to="/w/incentive"
+        onClick={() => {
+          setActiveButton("incentive");
+        }}
       >
         Incentive
       </Button>
       <Button
         variant="outlined"
-        className={classes.btnLabel}
+        className={
+          activeButton === "cause" ? classes.activeBtn : classes.btnLabel
+        }
         component={Link}
         to="/w/cause"
+        onClick={() => {
+          setActiveButton("cause");
+        }}
       >
         Cause
       </Button>
       <Button
         variant="outlined"
-        className={classes.btnLabel}
+        className={
+          activeButton === "groups" ? classes.activeBtn : classes.btnLabel
+        }
         component={Link}
         to="/w/groups"
+        onClick={() => {
+          setActiveButton("groups");
+        }}
       >
         Groups
       </Button>

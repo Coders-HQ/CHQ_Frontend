@@ -43,6 +43,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 
+  activeBtn: {
+    justifyContent: "flex-start",
+    paddingTop: "0.75rem",
+    paddingLeft: "2rem",
+    backgroundColor: "rgba(0,0,0, 0.25)",
+    color: "red",
+    transition: "all 0.25s ease",
+  },
+
   "@media screen and (max-width: 768px) ": {
     btnLabel: {
       justifyContent: "flex-start",
@@ -67,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Drawer = ({ userData, drawerStatus }) => {
-  const [activePage, setActivePage] = useState("");
+  const [activeButton, setActiveButton] = useState("");
   const [innerDrawerStatus, setDrawerStatus] = useState(true);
 
   const classes = useStyles();
@@ -102,7 +111,12 @@ const Drawer = ({ userData, drawerStatus }) => {
         className={classes.btngroup}
       >
         <Button
-          className={classes.btnLabel}
+          className={
+            window.location.pathname === "/u" ||
+            window.location.pathname === "/u/"
+              ? classes.activeBtn
+              : classes.btnLabel
+          }
           fullWidth={true}
           component={Link}
           to="/u"
@@ -111,28 +125,52 @@ const Drawer = ({ userData, drawerStatus }) => {
           Home
         </Button>
         <Button
-          className={classes.btnLabel}
+          className={
+            window.location.pathname === "/u/explore" ||
+            window.location.pathname === "/u/explore/"
+              ? classes.activeBtn
+              : classes.btnLabel
+          }
           fullWidth={true}
           component={Link}
           to="/u/explore"
+          onClick={() => {
+            setActiveButton("explore");
+          }}
         >
           <ExploreIcon style={{ marginRight: "10px" }} />
           <span className={classes.typography}>Explore</span>
         </Button>
         <Button
-          className={classes.btnLabel}
+          className={
+            window.location.pathname === "/u/profile" ||
+            window.location.pathname === "/u/profile/"
+              ? classes.activeBtn
+              : classes.btnLabel
+          }
           fullWidth={true}
           component={Link}
           to="/u/profile"
+          onClick={() => {
+            setActiveButton("profile");
+          }}
         >
           <PersonIcon style={{ marginRight: "10px" }} />
           Profile
         </Button>
         <Button
-          className={classes.btnLabel}
+          className={
+            window.location.pathname === "/u/settings" ||
+            window.location.pathname === "/u/settings/"
+              ? classes.activeBtn
+              : classes.btnLabel
+          }
           fullWidth={true}
           component={Link}
           to="/u/settings"
+          onClick={() => {
+            setActiveButton("settings");
+          }}
         >
           <SettingsIcon style={{ marginRight: "10px" }} />
           Settings
