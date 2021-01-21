@@ -6,7 +6,6 @@ import Home from "./Sections/Home/Home";
 import Explore from "./Sections/Explore/Explore";
 import Profile from "./Sections/Profile/Profile";
 import Settings from "./Sections/Settings/Settings";
-import Chat from "./Sections/Chat/Chat";
 import NotFound from "../NotFound/NotFound";
 import Header from "./Drawer/Header";
 

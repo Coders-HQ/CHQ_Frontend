@@ -134,26 +134,19 @@ const Drawer = ({ userData, drawerStatus }) => {
           fullWidth={true}
           component={Link}
           to="/u/explore"
-          onClick={() => {
-            setActiveButton("explore");
-          }}
         >
           <ExploreIcon style={{ marginRight: "10px" }} />
           <span className={classes.typography}>Explore</span>
         </Button>
         <Button
           className={
-            window.location.pathname === "/u/profile" ||
-            window.location.pathname === "/u/profile/"
+            window.location.pathname.startsWith("/u/profile")
               ? classes.activeBtn
               : classes.btnLabel
           }
           fullWidth={true}
           component={Link}
-          to="/u/profile"
-          onClick={() => {
-            setActiveButton("profile");
-          }}
+          to={"/u/profile/" + userData.username}
         >
           <PersonIcon style={{ marginRight: "10px" }} />
           Profile
@@ -168,9 +161,6 @@ const Drawer = ({ userData, drawerStatus }) => {
           fullWidth={true}
           component={Link}
           to="/u/settings"
-          onClick={() => {
-            setActiveButton("settings");
-          }}
         >
           <SettingsIcon style={{ marginRight: "10px" }} />
           Settings
