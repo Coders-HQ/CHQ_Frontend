@@ -1,4 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700&display=swap");
+@import "./variables.scss";
+
+.dark {
+  --color-page-background: #{$color-dark};
+  --color-text: #{$color-light};
+  --color-gray: #{$color-gray-dark};
+  --color-main: #{$color-dark};
+}
+
+:root {
+  --color-page-background: #{color-light};
+  --color-text: #{$color-dark};
+  --color-gray: #{$color-gray-light};
+  --color-main: #{color-light};
+}
 
 * {
   box-sizing: border-box;
@@ -8,6 +23,10 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-page-background);
 }
 
 // Here we import each styling for seperate components, very efficent :okhand:

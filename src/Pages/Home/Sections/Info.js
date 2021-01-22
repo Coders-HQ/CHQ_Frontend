@@ -8,7 +8,7 @@ const Info = () => (
   <div className="info">
     <h1 className="maintext">
       <TextLoop
-        className="purple"
+        className="red"
         children={[
           "Designing",
           "Creating",

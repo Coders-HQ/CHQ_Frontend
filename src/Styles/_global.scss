@@ -1,13 +1,14 @@
+@import "./variables.scss";
 .btn {
   text-decoration: none;
   display: inline-block;
-  background: #953434;
+  background: #b71c1c;
   color: #fff;
   font-size: 14px;
   padding: 12px 14px;
   transition: background 150ms ease-in-out;
   &:hover {
-    background: #da0202;
+    background: $color-primary;
     cursor: pointer;
   }
 }
@@ -42,4 +43,20 @@
   position: absolute;
   top: 0;
   left: 0;
+  transition: all 0.5s ease;
+}
+
+.loadingLabel {
+  position: fixed;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 34px;
+  bottom: 20rem;
+  left: 55rem;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
+  translate: translateX(-100%);
 }
