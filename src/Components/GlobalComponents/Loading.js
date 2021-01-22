@@ -24,6 +24,7 @@ const Loading = ({ loading }) => {
           color={"rgb(255,0,0)"}
           loading={loading}
         />
+        <span className="loadingLabel">Please wait...</span>
       </div>
     </Fade>
   );
