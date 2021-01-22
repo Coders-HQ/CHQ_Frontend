@@ -109,7 +109,7 @@ const LinksContainer = ({ hidden, isAuth }) => {
   const classes = useStyles();
   const [activeButton, setActiveButton] = useState("");
   return (
-    <div className={(hidden ? "hidden" : "") + " linksContainer"}>
+    <div className={"linksContainer"}>
       <Button
         variant="outlined"
         className={
