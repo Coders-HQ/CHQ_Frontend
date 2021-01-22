@@ -12,10 +12,6 @@ const Profile = ({ props }) => {
 
   const [profileData, setUserData] = useState("");
   const [gotData, setGotData] = useState(false);
-  const [localName, setLocalName] = useState(
-    JSON.parse(localStorage.getItem("userData")).username
-  );
-
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,9 +30,15 @@ const Profile = ({ props }) => {
   };
 
   const getData = async () => {
-    setUserData(await onLoad());
-    setLoading(false);
-    console.log("Data Loaded");
+    try {
+      setUserData(await onLoad());
+      setLoading(false);
+      console.log("Got Response");
+    } catch (e) {
+      setLoading(false);
+      setUserData(null);
+      console.log("Did not get Response");
+    }
   };
 
   const checkUsername = (userName) => {
@@ -55,12 +57,25 @@ const Profile = ({ props }) => {
   return (
     <div>
       <h1>
-        {checkUsername(userName) && !isLoading ? userName + "'s " : "Invalid "}
-        Profile
+        {checkUsername(userName) && !isLoading
+          ? `${userName}'s Profile`
+          : "User not found "}
       </h1>
-      <h1>Mobile Score: {profileData.mobile_score}</h1>
-      <h1>Front End: {profileData.front_end_score}</h1>
-      <h1>Back End: {profileData.back_end_score}</h1>
+      <h1>
+        {checkUsername(userName) && !isLoading
+          ? `Mobile Development: ${profileData.mobile_score}`
+          : ""}
+      </h1>
+      <h1>
+        {checkUsername(userName) && !isLoading
+          ? `Front End Development: ${profileData.front_end_score}`
+          : ""}
+      </h1>
+      <h1>
+        {checkUsername(userName) && !isLoading
+          ? `Back End Development: ${profileData.back_end_score}`
+          : ""}
+      </h1>
       <div>
         <Loading loading={isLoading} />
       </div>
