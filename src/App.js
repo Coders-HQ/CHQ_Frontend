@@ -12,6 +12,7 @@
 import React from "react";
 import "./Styles/app.scss";
 import Main from "./Components/Main/Main";
+require("dotenv").config();
 
 const App = () => (
   <div className="App">

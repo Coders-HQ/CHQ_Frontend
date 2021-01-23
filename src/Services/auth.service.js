@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const API_URL = "https://coders-hq.herokuapp.com/auth/";
+const API_URL = process.env.REACT_APP_API_DOMAIN + `auth/`;
+const auth = {
+  username: "codershq",
+  password: "codersHq0123",
+};
 
 // Checks if the User is authenticated or not
 const isAuth = () => {
@@ -17,12 +21,16 @@ const isAuth = () => {
 // Adds user data to database
 const register = (username, email, password1, password2) => {
   return axios
-    .post(API_URL + "register/", {
-      username,
-      password1,
-      password2,
-      email,
-    })
+    .post(
+      API_URL + "register/",
+      {
+        username,
+        password1,
+        password2,
+        email,
+      },
+      auth
+    )
     .then(function (response) {
       console.log(response);
       return response;
@@ -32,10 +40,14 @@ const register = (username, email, password1, password2) => {
 // Adds accessToken & userData to localStorage
 const login = (username, password) => {
   return axios
-    .post(API_URL + "login/", {
-      username,
-      password,
-    })
+    .post(
+      API_URL + "login/",
+      {
+        username,
+        password,
+      },
+      auth
+    )
     .then((response) => {
       if (response.data.key) {
         console.log(response);
@@ -46,9 +58,13 @@ const login = (username, password) => {
           headers: {
             Authorization: "Token " + response.data.key,
           },
+          auth: {
+            username: "codershq",
+            password: "codersHq0123",
+          },
         };
 
-        axios(config).then((response2) => {
+        axios(config, auth).then((response2) => {
           console.log(response2);
           localStorage.setItem("userData", JSON.stringify(response2.data));
         });
@@ -85,6 +101,10 @@ const getCurrentUserData = () => {
       url: API_URL + "user/",
       headers: {
         Authorization: "Token " + token,
+      },
+      auth: {
+        username: "codershq",
+        password: "codersHq0123",
       },
     };
 

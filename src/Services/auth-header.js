@@ -3,8 +3,7 @@ import axios from "axios";
 export const authHeader = () =>
   new Promise((resolve, reject) => {
     const accessToken = localStorage.getItem("accessToken") || 0;
-    const userData = localStorage.getItem("userData");
-    const API_URL = "https://coders-hq.herokuapp.com/auth/";
+    const API_URL = process.env.REACT_APP_API_DOMAIN + `auth/`;
     const config = {
       method: "get",
       url: API_URL + "user/",
@@ -13,7 +12,12 @@ export const authHeader = () =>
       },
     };
 
-    return axios(config)
+    const auth = {
+      username: "codershq",
+      password: "codersHq0123",
+    };
+
+    return axios(config, auth)
       .then((response) => {
         resolve(response);
       })
