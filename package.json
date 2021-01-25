@@ -17,7 +17,6 @@
     "framer-motion": "^3.2.1",
     "history": "^5.0.0",
     "lodash": "^4.17.20",
-    "node-sass": "4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.13.1",
@@ -39,6 +38,7 @@
     "redux": "^4.0.5",
     "redux-localstorage-simple": "^2.3.1",
     "redux-persist": "^6.0.0",
+    "sass": "^1.32.5",
     "slick-carousel": "^1.8.1",
     "validator": "^13.5.2",
     "wouter": "^2.7.0-alpha.1"
