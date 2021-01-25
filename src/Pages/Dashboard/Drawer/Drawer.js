@@ -159,12 +159,12 @@ const Drawer = ({ userData, isAuthenticated, darkMode, setTheme }) => {
         {isAuthenticated ? userData.username : ""}
       </h1>
       <FormControlLabel
+        className={classes.label}
         control={
           <Switch
             checked={checked.themeChecked}
             onChange={handleChange}
             name="themeChecked"
-            color="primary"
           />
         }
         label={"Dark Mode"}
