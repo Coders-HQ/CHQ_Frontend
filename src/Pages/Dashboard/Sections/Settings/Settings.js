@@ -1,11 +1,11 @@
 import React from "react";
 
-const Notifications = () => {
+const Settings = () => {
   return (
-    <div>
-      <h1>Notifications</h1>
+    <div className="dashboard-section">
+      <h1>Settings</h1>
     </div>
   );
 };
 
-export default Notifications;
+export default Settings;

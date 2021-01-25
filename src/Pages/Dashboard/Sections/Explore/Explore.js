@@ -2,7 +2,7 @@ import React from "react";
 
 const Explore = () => {
   return (
-    <div>
+    <div className="dashboard-section">
       <h1>Explore</h1>
     </div>
   );
