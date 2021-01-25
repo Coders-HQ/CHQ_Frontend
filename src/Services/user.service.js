@@ -1,5 +1,4 @@
 import axios from "axios";
-import authHeader from "./auth-header";
 
 /**
  *
@@ -26,9 +25,9 @@ const getHackathons = () => {
   return axios.get(process.env.REACT_APP_API_DOMAIN + "/hackathons/");
 };
 
-const getSpecificHackthon = ({ id }) => {
+const getSpecificHackathon = ({ id }) => {
   // GET Specific Hackathons
   return axios.get(process.env.REACT_APP_API_DOMAIN + "/hackathon/" + id);
 };
 
-export { getProfile, getHackathons, getSpecificHackthon };
+export { getProfile, getHackathons, getSpecificHackathon };
