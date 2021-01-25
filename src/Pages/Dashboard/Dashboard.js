@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Drawer from "./Drawer/Drawer";
 import Header from "./Header/Header";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import Home from "./Sections/Home/Home";
 import Explore from "./Sections/Explore/Explore";
@@ -10,46 +10,93 @@ import Chat from "./Sections/Chat/Chat";
 import Settings from "./Sections/Settings/Settings";
 import NotFound from "../NotFound/NotFound";
 
-const Dashboard = ({ isAuthenticated }) => {
+const Dashboard = ({ isAuthenticated, themePreference, setTheme }) => {
   // This gets us the User Data assigned into a state
 
-  const [userData, setUserData] = useState(
-    JSON.parse(localStorage.getItem("userData"))
-  );
+  const [userData] = useState(JSON.parse(localStorage.getItem("userData")));
 
-  const [drawerStatus, setDrawerStatus] = useState(true);
+  const [darkMode] = useState(themePreference === "dark");
 
   return (
-    <div className="dashboard-wrapper">
-      <div className="dashboard-main">
+    <div
+      className={"dashboard-wrapper " + (darkMode ? "graydark" : "graylight")}
+    >
+      <div
+        className={"dashboard-main " + (darkMode ? "graydark" : "graylight")}
+      >
         <Switch>
           <Route exact path="/u">
-            <Header userData={userData} isAuthenticated={isAuthenticated} />
-            <Drawer userData={userData} isAuthenticated={isAuthenticated} />
-            <Home />
+            <Header
+              userData={userData}
+              isAuthenticated={isAuthenticated}
+              darkMode={darkMode}
+            />
+            <Drawer
+              userData={userData}
+              isAuthenticated={isAuthenticated}
+              darkMode={darkMode}
+              setTheme={setTheme}
+            />
+            <Home darkMode={darkMode} />
           </Route>
           <Route exact path="/u/profile/:username">
-            <Header userData={userData} isAuthenticated={isAuthenticated} />
-            <Drawer userData={userData} isAuthenticated={isAuthenticated} />
-            <Profile />
+            <Header
+              userData={userData}
+              isAuthenticated={isAuthenticated}
+              darkMode={darkMode}
+            />
+            <Drawer
+              userData={userData}
+              isAuthenticated={isAuthenticated}
+              darkMode={darkMode}
+              setTheme={setTheme}
+            />
+            <Profile darkMode={darkMode} />
           </Route>
           <Route exact path="/u/explore">
-            <Header userData={userData} isAuthenticated={isAuthenticated} />
-            <Drawer userData={userData} isAuthenticated={isAuthenticated} />
-            <Explore />
+            <Header
+              userData={userData}
+              isAuthenticated={isAuthenticated}
+              darkMode={darkMode}
+            />
+            <Drawer
+              userData={userData}
+              isAuthenticated={isAuthenticated}
+              darkMode={darkMode}
+              setTheme={setTheme}
+            />
+            <Explore darkMode={darkMode} />
           </Route>
           <Route exact path="/u/settings">
-            <Header userData={userData} isAuthenticated={isAuthenticated} />
-            <Drawer userData={userData} isAuthenticated={isAuthenticated} />
-            <Settings />
+            <Header
+              userData={userData}
+              isAuthenticated={isAuthenticated}
+              darkMode={darkMode}
+            />
+            <Drawer
+              userData={userData}
+              isAuthenticated={isAuthenticated}
+              darkMode={darkMode}
+              setTheme={setTheme}
+            />
+            <Settings darkMode={darkMode} />
           </Route>
           <Route exact path="/u/messages">
-            <Header userData={userData} isAuthenticated={isAuthenticated} />
-            <Drawer userData={userData} isAuthenticated={isAuthenticated} />
-            <Chat />
+            <Header
+              userData={userData}
+              isAuthenticated={isAuthenticated}
+              darkMode={darkMode}
+            />
+            <Drawer
+              userData={userData}
+              isAuthenticated={isAuthenticated}
+              darkMode={darkMode}
+              setTheme={setTheme}
+            />
+            <Chat darkMode={darkMode} />
           </Route>
           <Route>
-            <NotFound />
+            <NotFound darkMode={darkMode} />
           </Route>
         </Switch>
       </div>

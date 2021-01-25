@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
 import { Link } from "react-router-dom";
 import {
   Home,
@@ -13,80 +12,142 @@ import {
   Message,
 } from "@material-ui/icons/";
 import Badge from "@material-ui/core/Badge";
-import history from "../../../history";
-import { BrowserRouter as Redirect } from "react-router-dom";
 import LogoutDialog from "../DashboardComponents/LogoutDialog";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
 
-const useStyles = makeStyles((theme) => ({
-  typography: {
-    fontFamily: ["Poppins", "sans-serif"].join(","),
-    fontWeight: "300",
-    textTransform: "none",
-  },
-
-  root: {
-    display: "flex",
-    "& > *": {
-      margin: theme.spacing(1),
+const Drawer = ({ userData, isAuthenticated, darkMode, setTheme }) => {
+  const useStyles = makeStyles((theme) => ({
+    typography: {
+      fontFamily: ["Poppins", "sans-serif"].join(","),
+      fontWeight: "300",
+      textTransform: "none",
+      color: darkMode ? "white" : "black",
     },
-  },
-  centerbtn: {
-    color: "white",
-  },
-  btnLabel: {
-    justifyContent: "flex-start",
-    paddingTop: "0.75rem",
-    paddingLeft: "2rem",
-    color: "white",
-    height: "5rem",
-    transition: "all 0.25s ease",
-    "&:focus": {
-      backgroundColor: "rgba(0,0,0, 0.25)",
-      color: "red",
+
+    root: {
+      display: "flex",
+      "& > *": {
+        margin: theme.spacing(1),
+      },
     },
-  },
 
-  activeBtn: {
-    justifyContent: "flex-start",
-    paddingTop: "0.75rem",
-    paddingLeft: "2rem",
-    color: "red",
-    height: "5rem",
-    transition: "all 0.25s ease",
-  },
+    label: {
+      fontFamily: ["Poppins", "sans-serif"].join(","),
+      fontWeight: "300",
+      textTransform: "none",
+      color: darkMode ? "white" : "black",
+    },
 
-  "@media screen and (max-width: 768px) ": {
     btnLabel: {
       justifyContent: "flex-start",
-      color: "white",
+      paddingTop: "0.75rem",
+      paddingLeft: "2rem",
+      height: "5rem",
       transition: "all 0.25s ease",
+      color: darkMode ? "white" : "black",
       "&:focus": {
+        backgroundColor: "rgba(0,0,0, 0.25)",
         color: "red",
       },
     },
-  },
-  small: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
-  },
-  large: {
-    width: theme.spacing(10),
-    height: theme.spacing(10),
-    textTransform: "uppercase",
-    backgroundColor: "red",
-  },
-  badge: {
-    marginLeft: "1rem",
-  },
-}));
 
-const Drawer = ({ userData, status, isAuthenticated }) => {
+    activeBtn: {
+      justifyContent: "flex-start",
+      paddingTop: "0.75rem",
+      paddingLeft: "2rem",
+      color: "red",
+      height: "5rem",
+      transition: "all 0.25s ease",
+    },
+
+    activeIcon: {
+      marginRight: "10px",
+      color: "red",
+      transition: "all 0.25s ease",
+    },
+
+    activeBadgeIcon: {
+      color: "red",
+      transition: "all 0.25s ease",
+    },
+
+    activeLabel: {
+      fontFamily: ["Poppins", "sans-serif"].join(","),
+      fontWeight: "300",
+      textTransform: "none",
+      color: "red",
+      transition: "all 0.25s ease",
+    },
+
+    badgeIcon: {
+      transition: "all 0.25s ease",
+      color: darkMode ? "white" : "black",
+    },
+
+    NoSpaceBtn: {
+      transition: "all 0.25s ease",
+      color: darkMode ? "white" : "black",
+      "&:focus": {
+        backgroundColor: "rgba(0,0,0, 0.25)",
+        color: "red",
+      },
+    },
+
+    btnIcon: {
+      marginRight: "10px",
+      color: darkMode ? "white" : "black",
+      transition: "all 0.25s ease",
+    },
+
+    "@media screen and (max-width: 768px) ": {
+      btnLabel: {
+        justifyContent: "flex-start",
+        color: darkMode ? "white" : "black",
+        transition: "all 0.25s ease",
+        "&:focus": {
+          color: "red",
+        },
+      },
+    },
+    small: {
+      width: theme.spacing(3),
+      height: theme.spacing(3),
+    },
+    large: {
+      width: theme.spacing(10),
+      height: theme.spacing(10),
+      textTransform: "uppercase",
+      backgroundColor: "red",
+      color: darkMode ? "white" : "black",
+    },
+    badge: {
+      marginLeft: "1rem",
+    },
+  }));
+
+  const [isOpen, setOpen] = React.useState(false);
+  const [checked, setChecked] = React.useState({
+    themeChecked: darkMode,
+  });
+
+  const handleChange = (event) => {
+    if (checked.themeChecked) {
+      setTheme("light");
+    } else {
+      setTheme("dark");
+    }
+    setChecked({ ...checked, [event.target.name]: event.target.checked });
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
   const classes = useStyles();
   return (
-    <div
-      className={status ? "dashboard-drawer active-drawer" : "dashboard-drawer"}
-    >
-      <LogoutDialog />
+    <div className={"dashboard-drawer " + (darkMode ? "dark" : "light")}>
+      <LogoutDialog classes={classes} isOpen={isOpen} setOpen={setOpen} />
       <h2 className={isAuthenticated ? "user-avatar" : "user-avatar hidden"}>
         <Avatar className={classes.large}>
           {isAuthenticated ? userData.username[0] : ""}
@@ -97,6 +158,17 @@ const Drawer = ({ userData, status, isAuthenticated }) => {
       >
         {isAuthenticated ? userData.username : ""}
       </h1>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={checked.themeChecked}
+            onChange={handleChange}
+            name="themeChecked"
+            color="primary"
+          />
+        }
+        label={"Dark Mode"}
+      />
       <hr className="h-break" />
       <Button
         className={
@@ -111,8 +183,28 @@ const Drawer = ({ userData, status, isAuthenticated }) => {
         component={Link}
         to="/u"
       >
-        <Home style={{ marginRight: "10px" }} />
-        <span className={classes.typography}>Home</span>
+        <Home
+          className={
+            window.location.pathname === "/u" ||
+            window.location.pathname === "/u/" ||
+            (!isAuthenticated &&
+              window.location.pathname.startsWith(`/u/profile/`))
+              ? classes.activeIcon
+              : classes.btnIcon
+          }
+        />
+        <span
+          className={
+            window.location.pathname === "/u" ||
+            window.location.pathname === "/u/" ||
+            (!isAuthenticated &&
+              window.location.pathname.startsWith(`/u/profile/`))
+              ? classes.activeLabel
+              : classes.label
+          }
+        >
+          Home
+        </span>
       </Button>
       <Button
         className={
@@ -125,8 +217,24 @@ const Drawer = ({ userData, status, isAuthenticated }) => {
         component={Link}
         to="/u/explore"
       >
-        <Explore style={{ marginRight: "10px" }} />
-        <span className={classes.typography}>Explore</span>
+        <Explore
+          className={
+            window.location.pathname === "/u/explore" ||
+            window.location.pathname === "/u/explore/"
+              ? classes.activeIcon
+              : classes.btnIcon
+          }
+        />
+        <span
+          className={
+            window.location.pathname === "/u/explore" ||
+            window.location.pathname === "/u/explore/"
+              ? classes.activeLabel
+              : classes.label
+          }
+        >
+          Explore
+        </span>
       </Button>
       <Button
         className={
@@ -140,8 +248,26 @@ const Drawer = ({ userData, status, isAuthenticated }) => {
         component={Link}
         to={isAuthenticated ? `/u/profile/${userData.username}` : "/login"}
       >
-        <Person style={{ marginRight: "10px" }} />
-        <span className={classes.typography}>My Profile</span>
+        <Person
+          className={
+            isAuthenticated
+              ? window.location.pathname === `/u/profile/${userData.username}`
+                ? classes.activeIcon
+                : classes.btnIcon
+              : classes.btnIcon
+          }
+        />
+        <span
+          className={
+            isAuthenticated
+              ? window.location.pathname === `/u/profile/${userData.username}`
+                ? classes.activeLabel
+                : classes.label
+              : classes.label
+          }
+        >
+          My Profile
+        </span>
       </Button>
 
       <Button
@@ -155,9 +281,25 @@ const Drawer = ({ userData, status, isAuthenticated }) => {
         to={isAuthenticated ? `/u/messages` : "/login"}
       >
         <Badge style={{ marginRight: "10px" }} badgeContent={4} color="error">
-          <Message />
+          <Message
+            className={
+              window.location.pathname === "/u/messages" ||
+              window.location.pathname === "/u/messages/"
+                ? classes.activeBadgeIcon
+                : classes.badgeIcon
+            }
+          />
         </Badge>
-        <span className={classes.typography}>Messages</span>
+        <span
+          className={
+            window.location.pathname === "/u/messages" ||
+            window.location.pathname === "/u/messages/"
+              ? classes.activeLabel
+              : classes.label
+          }
+        >
+          Messages
+        </span>
       </Button>
 
       <Button
@@ -171,17 +313,33 @@ const Drawer = ({ userData, status, isAuthenticated }) => {
         component={Link}
         to="/u/settings"
       >
-        <Settings style={{ marginRight: "10px" }} />
-        <span className={classes.typography}>Settings</span>
+        <Settings
+          className={
+            window.location.pathname === "/u/settings" ||
+            window.location.pathname === "/u/settings/"
+              ? classes.activeIcon
+              : classes.btnIcon
+          }
+        />
+        <span
+          className={
+            window.location.pathname === "/u/settings" ||
+            window.location.pathname === "/u/settings/"
+              ? classes.activeLabel
+              : classes.label
+          }
+        >
+          Settings
+        </span>
       </Button>
       <Button
         className={classes.btnLabel}
         fullWidth={true}
-        component={Link}
-        to="/logout"
+        onClick={handleClickOpen}
+        style={{ bottom: "0px" }}
       >
-        <ExitToApp style={{ marginRight: "10px" }} />
-        <span className={classes.typography}>Logout</span>
+        <ExitToApp className={classes.btnIcon} />
+        <span className={classes.label}>Logout</span>
       </Button>
     </div>
   );

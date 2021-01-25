@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Loading from "../../../../Components/GlobalComponents/Loading";
-import { getProfile, getUsername } from "../../../../Services/user.service";
-import { BrowserRouter as Redirect } from "react-router-dom";
+import { getProfile } from "../../../../Services/user.service";
 
-const Profile = ({ props }) => {
-  const [userName, setUserName] = useState(
+const Profile = ({ darkMode }) => {
+  const [userName] = useState(
     window.location.pathname.substring(
       window.location.pathname.lastIndexOf("/") + 1
     )
@@ -16,6 +15,7 @@ const Profile = ({ props }) => {
 
   useEffect(() => {
     getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onLoad = async () => {
@@ -55,7 +55,9 @@ const Profile = ({ props }) => {
     }
   };
   return (
-    <div className="dashboard-section">
+    <div
+      className={"dashboard-section " + (darkMode ? "graydark" : "graylight")}
+    >
       <h1>
         {checkUsername(userName) && !isLoading
           ? `${userName}'s Profile`
@@ -76,9 +78,7 @@ const Profile = ({ props }) => {
           ? `Back End Development: ${profileData.back_end_score}`
           : ""}
       </h1>
-      <div>
-        <Loading loading={isLoading} />
-      </div>
+      <Loading loading={isLoading} />
     </div>
   );
 };

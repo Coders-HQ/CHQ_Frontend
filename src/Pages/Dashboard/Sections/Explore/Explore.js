@@ -1,8 +1,10 @@
 import React from "react";
 
-const Explore = () => {
+const Explore = ({ darkMode }) => {
   return (
-    <div className="dashboard-section">
+    <div
+    className={"dashboard-section " + (darkMode ? "graydark" : "graylight")}
+  >
       <h1>Explore</h1>
     </div>
   );
