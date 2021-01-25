@@ -17,7 +17,6 @@ import {
 } from "react-router-dom";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import { authHeader } from "../../Services/auth-header";
 import history from "../../history";
 
@@ -47,7 +46,42 @@ const Main = ({ props }) => {
     }
   }
 
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: light)");
+  const getTheme = () => {
+    if (
+      localStorage.getItem("themePreference") !== undefined ||
+      localStorage.getItem("themePreference") !== null
+    ) {
+      return localStorage.getItem("themePreference");
+    } else {
+      return "light";
+    }
+  };
+
+  const setThemeStorage = (theme) => {
+    if (
+      (localStorage.getItem("themePreference") !== undefined ||
+        localStorage.getItem("themePreference") !== null) &&
+      theme !== undefined &&
+      theme !== null
+    ) {
+      localStorage.setItem("themePreference", theme);
+    } else {
+      localStorage.setItem("themePreference", "light");
+    }
+  };
+
+  const setTheme = async (theme) => {
+    await setThemeStorage(theme);
+    refreshTheme(getTheme());
+    window.location.reload();
+  };
+
+  const [themePreference, refreshTheme] = useState(getTheme());
+  const prefersDarkMode = useMediaQuery(
+    "(prefers-color-scheme: " +
+      (themePreference === "dark" ? "dark" : "light") +
+      ")"
+  );
 
   const theme = React.useMemo(
     () =>
@@ -55,15 +89,15 @@ const Main = ({ props }) => {
         palette: {
           type: prefersDarkMode ? "dark" : "light",
           primary: {
-            light: "#f2f5fa",
+            light: "rgb(242, 245, 250)",
             main: "#da0202",
-            dark: "#262d37",
+            dark: "rgb(38, 45, 55)",
             // contrastText: will be calculated to contrast with palette.primary.main
           },
           secondary: {
-            light: "#c7c7c7",
+            light: "rgb(218, 214, 214)",
             main: "#b71c1c",
-            dark: "#303741",
+            dark: "rgb(48, 55, 65)",
           },
           // Used by `getContrastText()` to maximize the contrast between
           // the background and the text.
@@ -85,7 +119,11 @@ const Main = ({ props }) => {
             {isLoading ? (
               <Loading loading={isLoading} />
             ) : (
-              <Dashboard isAuthenticated={isAuthenticated} />
+              <Dashboard
+                isAuthenticated={isAuthenticated}
+                themePreference={themePreference}
+                setTheme={setTheme}
+              />
             )}
           </Route>
 
