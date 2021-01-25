@@ -14,9 +14,20 @@
   transition: all 0.5s ease;
   float: left;
   z-index: 4;
-  border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   font-family: "Poppins", sans-serif;
+}
+
+.dashboard-header {
+  width: 100%;
+  height: 5rem;
+  background-color: rgb(48, 55, 65);
+  padding-left: 13.95rem; // This value is good for centering right aside
+}
+
+.dashboard-section {
+  width: 100%;
+  padding-left: 13.95rem;
 }
 
 .h-break {
