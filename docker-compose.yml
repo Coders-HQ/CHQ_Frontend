@@ -1,4 +1,4 @@
-version: "3.4"
+version: "3.8"
 
 services:
   web:
@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=production
+      - API_DOMAIN=${REACT_APP_API_DOMAIN}
     command: yarn start
     ports:
       - 33324:33324
