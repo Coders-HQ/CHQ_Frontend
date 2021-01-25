@@ -146,15 +146,13 @@ const Drawer = ({ userData, status, isAuthenticated }) => {
 
       <Button
         className={
-          window.location.pathname.startsWith("/u/notifications")
+          window.location.pathname.startsWith("/u/messages")
             ? classes.activeBtn
             : classes.btnLabel
         }
         fullWidth={true}
         component={Link}
-        to={
-          isAuthenticated ? `/u/notifications/${userData.username}` : "/login"
-        }
+        to={isAuthenticated ? `/u/messages` : "/login"}
       >
         <Badge style={{ marginRight: "10px" }} badgeContent={4} color="error">
           <Message />

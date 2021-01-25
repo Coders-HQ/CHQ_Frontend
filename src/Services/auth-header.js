@@ -12,12 +12,7 @@ export const authHeader = () =>
       },
     };
 
-    const auth = {
-      username: "codershq",
-      password: "codersHq0123",
-    };
-
-    return axios(config, auth)
+    return axios(config)
       .then((response) => {
         resolve(response);
       })

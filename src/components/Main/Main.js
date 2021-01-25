@@ -29,16 +29,19 @@ const Main = ({ props }) => {
     onLoad();
   }, []);
 
+  // Checks user Authentication before a page is loaded
   async function onLoad() {
     try {
       await authHeader();
       userHasAuthenticated(true);
       setLoading(false);
+      // for Development Purposes
       console.log("User is Authenticated");
       console.log(isAuthenticated);
     } catch (e) {
       userHasAuthenticated(false);
       setLoading(false);
+      // for Development Purposes
       console.log("User not Authenticated");
       console.log(isAuthenticated);
     }

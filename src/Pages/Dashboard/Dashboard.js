@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Drawer from "./Drawer/Drawer";
+import Header from "./Header/Header";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Home from "./Sections/Home/Home";
 import Explore from "./Sections/Explore/Explore";
 import Profile from "./Sections/Profile/Profile";
+import Chat from "./Sections/Chat/Chat";
 import Settings from "./Sections/Settings/Settings";
 import NotFound from "../NotFound/NotFound";
 
@@ -22,40 +24,29 @@ const Dashboard = ({ isAuthenticated }) => {
       <div className="dashboard-main">
         <Switch>
           <Route exact path="/u">
-            <Drawer
-              userData={userData}
-              status={drawerStatus}
-              setDrawerStatus={setDrawerStatus}
-              isAuthenticated={isAuthenticated}
-            />
+            <Header userData={userData} isAuthenticated={isAuthenticated} />
+            <Drawer userData={userData} isAuthenticated={isAuthenticated} />
             <Home />
           </Route>
           <Route exact path="/u/profile/:username">
-            <Drawer
-              userData={userData}
-              status={drawerStatus}
-              setDrawerStatus={setDrawerStatus}
-              isAuthenticated={isAuthenticated}
-            />
+            <Header userData={userData} isAuthenticated={isAuthenticated} />
+            <Drawer userData={userData} isAuthenticated={isAuthenticated} />
             <Profile />
           </Route>
           <Route exact path="/u/explore">
-            <Drawer
-              userData={userData}
-              status={drawerStatus}
-              setDrawerStatus={setDrawerStatus}
-              isAuthenticated={isAuthenticated}
-            />
+            <Header userData={userData} isAuthenticated={isAuthenticated} />
+            <Drawer userData={userData} isAuthenticated={isAuthenticated} />
             <Explore />
           </Route>
           <Route exact path="/u/settings">
-            <Drawer
-              userData={userData}
-              status={drawerStatus}
-              setDrawerStatus={setDrawerStatus}
-              isAuthenticated={isAuthenticated}
-            />
+            <Header userData={userData} isAuthenticated={isAuthenticated} />
+            <Drawer userData={userData} isAuthenticated={isAuthenticated} />
             <Settings />
+          </Route>
+          <Route exact path="/u/messages">
+            <Header userData={userData} isAuthenticated={isAuthenticated} />
+            <Drawer userData={userData} isAuthenticated={isAuthenticated} />
+            <Chat />
           </Route>
           <Route>
             <NotFound />
