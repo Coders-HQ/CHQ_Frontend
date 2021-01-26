@@ -79,7 +79,7 @@ const Dashboard = ({ isAuthenticated, themePreference, setTheme }) => {
               darkMode={darkMode}
               setTheme={setTheme}
             />
-            <Settings darkMode={darkMode} />
+            <Settings darkMode={darkMode} setTheme={setTheme} />
           </Route>
           <Route exact path="/u/messages">
             <Header

@@ -2,30 +2,34 @@
 @import "./variables";
 
 .dashboard-drawer {
-  position: fixed;
   top: 0;
   left: 0;
-  width: 15rem;
+  width: 10%;
   height: 100%;
   box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.16);
   overflow-y: scroll;
   overflow-x: hidden;
   transition: all 0.5s ease;
+  position: fixed;
   float: left;
-  z-index: 4;
   border-bottom-right-radius: 10px;
   font-family: "Poppins", sans-serif;
+  flex-shrink: 0;
 }
 
 .dashboard-header {
-  width: 100%;
+  width: 90%;
   height: 5rem;
-  padding-left: 13.95rem; // This value is good for centering right aside
+  display: block;
+  transition: all 0.5s ease;
+  float: right;
+  position: fixed;
 }
 
 .dashboard-section {
   width: 100%;
   padding-left: 13.95rem;
+  clear: both;
 }
 
 .h-break {
@@ -33,6 +37,7 @@
   background-color: rgba(0, 0, 0, 0.363);
   border: none;
   margin-bottom: 1rem;
+  opacity: 0;
 }
 
 .bold {
@@ -68,12 +73,10 @@
 
 .dashboard-main {
   transition: all 0.5s ease;
-  margin: 0;
   width: 100%;
-  position: fixed;
   text-align: center;
   height: 100%;
-  display: inline-block; /* change the default display type to inline-block */
+  display: flex; /* change the default display type to inline-block */
   overflow: hidden; /* hide the overflow */
 }
 

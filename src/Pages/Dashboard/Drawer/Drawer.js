@@ -13,10 +13,8 @@ import {
 } from "@material-ui/icons/";
 import Badge from "@material-ui/core/Badge";
 import LogoutDialog from "../DashboardComponents/LogoutDialog";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
 
-const Drawer = ({ userData, isAuthenticated, darkMode, setTheme }) => {
+const Drawer = ({ userData, isAuthenticated, darkMode }) => {
   const useStyles = makeStyles((theme) => ({
     typography: {
       fontFamily: ["Poppins", "sans-serif"].join(","),
@@ -127,18 +125,6 @@ const Drawer = ({ userData, isAuthenticated, darkMode, setTheme }) => {
   }));
 
   const [isOpen, setOpen] = React.useState(false);
-  const [checked, setChecked] = React.useState({
-    themeChecked: darkMode,
-  });
-
-  const handleChange = (event) => {
-    if (checked.themeChecked) {
-      setTheme("light");
-    } else {
-      setTheme("dark");
-    }
-    setChecked({ ...checked, [event.target.name]: event.target.checked });
-  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -148,28 +134,6 @@ const Drawer = ({ userData, isAuthenticated, darkMode, setTheme }) => {
   return (
     <div className={"dashboard-drawer " + (darkMode ? "dark" : "light")}>
       <LogoutDialog classes={classes} isOpen={isOpen} setOpen={setOpen} />
-      <h2 className={isAuthenticated ? "user-avatar" : "user-avatar hidden"}>
-        <Avatar className={classes.large}>
-          {isAuthenticated ? userData.username[0] : ""}
-        </Avatar>
-      </h2>
-      <h1
-        className={isAuthenticated ? "user-username" : "user-username hidden"}
-      >
-        {isAuthenticated ? userData.username : ""}
-      </h1>
-      <FormControlLabel
-        className={classes.label}
-        control={
-          <Switch
-            checked={checked.themeChecked}
-            onChange={handleChange}
-            name="themeChecked"
-          />
-        }
-        label={"Dark Mode"}
-      />
-      <hr className="h-break" />
       <Button
         className={
           window.location.pathname === "/u" ||
