@@ -16,6 +16,7 @@ import LogoutDialog from "../DashboardComponents/LogoutDialog";
 import Divider from "@material-ui/core/Divider";
 import DarkLogo from "../../../Components/GlobalComponents/DarkLogo";
 import LightLogo from "../../../Components/GlobalComponents/LightLogo";
+import { useLocation } from "react-router-dom";
 
 const Drawer = ({ userData, isAuthenticated, darkMode }) => {
   const useStyles = makeStyles((theme) => ({
@@ -134,6 +135,9 @@ const Drawer = ({ userData, isAuthenticated, darkMode }) => {
   };
 
   const classes = useStyles();
+
+  const location = useLocation();
+
   return (
     <div className={"dashboard-drawer " + (darkMode ? "dark" : "light")}>
       <LogoutDialog classes={classes} isOpen={isOpen} setOpen={setOpen} />
@@ -145,10 +149,9 @@ const Drawer = ({ userData, isAuthenticated, darkMode }) => {
       <div className="btn-group">
         <Button
           className={
-            window.location.pathname === "/u" ||
-            window.location.pathname === "/u/" ||
-            (!isAuthenticated &&
-              window.location.pathname.startsWith(`/u/profile/`))
+            location.pathname === "/u" ||
+            location.pathname === "/u/" ||
+            (!isAuthenticated && location.pathname.startsWith(`/u/profile/`))
               ? classes.activeBtn
               : classes.btnLabel
           }
@@ -158,20 +161,18 @@ const Drawer = ({ userData, isAuthenticated, darkMode }) => {
         >
           <Home
             className={
-              window.location.pathname === "/u" ||
-              window.location.pathname === "/u/" ||
-              (!isAuthenticated &&
-                window.location.pathname.startsWith(`/u/profile/`))
+              location.pathname === "/u" ||
+              location.pathname === "/u/" ||
+              (!isAuthenticated && location.pathname.startsWith(`/u/profile/`))
                 ? classes.activeIcon
                 : classes.btnIcon
             }
           />
           <span
             className={
-              window.location.pathname === "/u" ||
-              window.location.pathname === "/u/" ||
-              (!isAuthenticated &&
-                window.location.pathname.startsWith(`/u/profile/`))
+              location.pathname === "/u" ||
+              location.pathname === "/u/" ||
+              (!isAuthenticated && location.pathname.startsWith(`/u/profile/`))
                 ? classes.activeLabel
                 : classes.label
             }
@@ -181,8 +182,8 @@ const Drawer = ({ userData, isAuthenticated, darkMode }) => {
         </Button>
         <Button
           className={
-            window.location.pathname === "/u/explore" ||
-            window.location.pathname === "/u/explore/"
+            location.pathname === "/u/explore" ||
+            location.pathname === "/u/explore/"
               ? classes.activeBtn
               : classes.btnLabel
           }
@@ -192,16 +193,16 @@ const Drawer = ({ userData, isAuthenticated, darkMode }) => {
         >
           <Explore
             className={
-              window.location.pathname === "/u/explore" ||
-              window.location.pathname === "/u/explore/"
+              location.pathname === "/u/explore" ||
+              location.pathname === "/u/explore/"
                 ? classes.activeIcon
                 : classes.btnIcon
             }
           />
           <span
             className={
-              window.location.pathname === "/u/explore" ||
-              window.location.pathname === "/u/explore/"
+              location.pathname === "/u/explore" ||
+              location.pathname === "/u/explore/"
                 ? classes.activeLabel
                 : classes.label
             }
@@ -212,7 +213,7 @@ const Drawer = ({ userData, isAuthenticated, darkMode }) => {
         <Button
           className={
             isAuthenticated
-              ? window.location.pathname === `/u/profile/${userData.username}`
+              ? location.pathname === `/u/profile/${userData.username}`
                 ? classes.activeBtn
                 : classes.btnLabel
               : classes.btnLabel
@@ -224,7 +225,7 @@ const Drawer = ({ userData, isAuthenticated, darkMode }) => {
           <Person
             className={
               isAuthenticated
-                ? window.location.pathname === `/u/profile/${userData.username}`
+                ? location.pathname === `/u/profile/${userData.username}`
                   ? classes.activeIcon
                   : classes.btnIcon
                 : classes.btnIcon
@@ -233,7 +234,7 @@ const Drawer = ({ userData, isAuthenticated, darkMode }) => {
           <span
             className={
               isAuthenticated
-                ? window.location.pathname === `/u/profile/${userData.username}`
+                ? location.pathname === `/u/profile/${userData.username}`
                   ? classes.activeLabel
                   : classes.label
                 : classes.label
@@ -245,7 +246,7 @@ const Drawer = ({ userData, isAuthenticated, darkMode }) => {
 
         <Button
           className={
-            window.location.pathname.startsWith("/u/messages")
+            location.pathname.startsWith("/u/messages")
               ? classes.activeBtn
               : classes.btnLabel
           }
@@ -256,8 +257,8 @@ const Drawer = ({ userData, isAuthenticated, darkMode }) => {
           <Badge style={{ marginRight: "10px" }} badgeContent={4} color="error">
             <Message
               className={
-                window.location.pathname === "/u/messages" ||
-                window.location.pathname === "/u/messages/"
+                location.pathname === "/u/messages" ||
+                location.pathname === "/u/messages/"
                   ? classes.activeBadgeIcon
                   : classes.badgeIcon
               }
@@ -265,8 +266,8 @@ const Drawer = ({ userData, isAuthenticated, darkMode }) => {
           </Badge>
           <span
             className={
-              window.location.pathname === "/u/messages" ||
-              window.location.pathname === "/u/messages/"
+              location.pathname === "/u/messages" ||
+              location.pathname === "/u/messages/"
                 ? classes.activeLabel
                 : classes.label
             }
@@ -277,8 +278,8 @@ const Drawer = ({ userData, isAuthenticated, darkMode }) => {
 
         <Button
           className={
-            window.location.pathname === "/u/settings" ||
-            window.location.pathname === "/u/settings/"
+            location.pathname === "/u/settings" ||
+            location.pathname === "/u/settings/"
               ? classes.activeBtn
               : classes.btnLabel
           }
@@ -288,16 +289,16 @@ const Drawer = ({ userData, isAuthenticated, darkMode }) => {
         >
           <Settings
             className={
-              window.location.pathname === "/u/settings" ||
-              window.location.pathname === "/u/settings/"
+              location.pathname === "/u/settings" ||
+              location.pathname === "/u/settings/"
                 ? classes.activeIcon
                 : classes.btnIcon
             }
           />
           <span
             className={
-              window.location.pathname === "/u/settings" ||
-              window.location.pathname === "/u/settings/"
+              location.pathname === "/u/settings" ||
+              location.pathname === "/u/settings/"
                 ? classes.activeLabel
                 : classes.label
             }

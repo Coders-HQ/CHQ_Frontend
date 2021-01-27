@@ -24,75 +24,31 @@ const Dashboard = ({ isAuthenticated, themePreference, setTheme }) => {
       <div
         className={"dashboard-main " + (darkMode ? "graydark" : "graylight")}
       >
+        <Header
+          userData={userData}
+          isAuthenticated={isAuthenticated}
+          darkMode={darkMode}
+        />
+        <Drawer
+          userData={userData}
+          isAuthenticated={isAuthenticated}
+          darkMode={darkMode}
+          setTheme={setTheme}
+        />
         <Switch>
           <Route exact path="/u">
-            <Drawer
-              userData={userData}
-              isAuthenticated={isAuthenticated}
-              darkMode={darkMode}
-              setTheme={setTheme}
-            />
-            <Header
-              userData={userData}
-              isAuthenticated={isAuthenticated}
-              darkMode={darkMode}
-            />
             <Home darkMode={darkMode} />
           </Route>
           <Route exact path="/u/profile/:username">
-            <Header
-              userData={userData}
-              isAuthenticated={isAuthenticated}
-              darkMode={darkMode}
-            />
-            <Drawer
-              userData={userData}
-              isAuthenticated={isAuthenticated}
-              darkMode={darkMode}
-              setTheme={setTheme}
-            />
             <Profile darkMode={darkMode} />
           </Route>
           <Route exact path="/u/explore">
-            <Header
-              userData={userData}
-              isAuthenticated={isAuthenticated}
-              darkMode={darkMode}
-            />
-            <Drawer
-              userData={userData}
-              isAuthenticated={isAuthenticated}
-              darkMode={darkMode}
-              setTheme={setTheme}
-            />
             <Explore darkMode={darkMode} />
           </Route>
           <Route exact path="/u/settings">
-            <Header
-              userData={userData}
-              isAuthenticated={isAuthenticated}
-              darkMode={darkMode}
-            />
-            <Drawer
-              userData={userData}
-              isAuthenticated={isAuthenticated}
-              darkMode={darkMode}
-              setTheme={setTheme}
-            />
             <Settings darkMode={darkMode} setTheme={setTheme} />
           </Route>
           <Route exact path="/u/messages">
-            <Header
-              userData={userData}
-              isAuthenticated={isAuthenticated}
-              darkMode={darkMode}
-            />
-            <Drawer
-              userData={userData}
-              isAuthenticated={isAuthenticated}
-              darkMode={darkMode}
-              setTheme={setTheme}
-            />
             <Chat darkMode={darkMode} />
           </Route>
           <Route>
