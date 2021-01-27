@@ -26,16 +26,16 @@ const Dashboard = ({ isAuthenticated, themePreference, setTheme }) => {
       >
         <Switch>
           <Route exact path="/u">
-            <Header
-              userData={userData}
-              isAuthenticated={isAuthenticated}
-              darkMode={darkMode}
-            />
             <Drawer
               userData={userData}
               isAuthenticated={isAuthenticated}
               darkMode={darkMode}
               setTheme={setTheme}
+            />
+            <Header
+              userData={userData}
+              isAuthenticated={isAuthenticated}
+              darkMode={darkMode}
             />
             <Home darkMode={darkMode} />
           </Route>

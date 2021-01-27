@@ -13,6 +13,9 @@ import {
 } from "@material-ui/icons/";
 import Badge from "@material-ui/core/Badge";
 import LogoutDialog from "../DashboardComponents/LogoutDialog";
+import Divider from "@material-ui/core/Divider";
+import DarkLogo from "../../../Components/GlobalComponents/DarkLogo";
+import LightLogo from "../../../Components/GlobalComponents/LightLogo";
 
 const Drawer = ({ userData, isAuthenticated, darkMode }) => {
   const useStyles = makeStyles((theme) => ({
@@ -134,177 +137,184 @@ const Drawer = ({ userData, isAuthenticated, darkMode }) => {
   return (
     <div className={"dashboard-drawer " + (darkMode ? "dark" : "light")}>
       <LogoutDialog classes={classes} isOpen={isOpen} setOpen={setOpen} />
-      <Button
-        className={
-          window.location.pathname === "/u" ||
-          window.location.pathname === "/u/" ||
-          (!isAuthenticated &&
-            window.location.pathname.startsWith(`/u/profile/`))
-            ? classes.activeBtn
-            : classes.btnLabel
-        }
-        fullWidth={true}
-        component={Link}
-        to="/u"
-      >
-        <Home
+      {darkMode ? (
+        <LightLogo className="drawer-logo" />
+      ) : (
+        <DarkLogo className="drawer-logo" />
+      )}
+      <div className="btn-group">
+        <Button
           className={
             window.location.pathname === "/u" ||
             window.location.pathname === "/u/" ||
             (!isAuthenticated &&
               window.location.pathname.startsWith(`/u/profile/`))
-              ? classes.activeIcon
-              : classes.btnIcon
-          }
-        />
-        <span
-          className={
-            window.location.pathname === "/u" ||
-            window.location.pathname === "/u/" ||
-            (!isAuthenticated &&
-              window.location.pathname.startsWith(`/u/profile/`))
-              ? classes.activeLabel
-              : classes.label
-          }
-        >
-          Home
-        </span>
-      </Button>
-      <Button
-        className={
-          window.location.pathname === "/u/explore" ||
-          window.location.pathname === "/u/explore/"
-            ? classes.activeBtn
-            : classes.btnLabel
-        }
-        fullWidth={true}
-        component={Link}
-        to="/u/explore"
-      >
-        <Explore
-          className={
-            window.location.pathname === "/u/explore" ||
-            window.location.pathname === "/u/explore/"
-              ? classes.activeIcon
-              : classes.btnIcon
-          }
-        />
-        <span
-          className={
-            window.location.pathname === "/u/explore" ||
-            window.location.pathname === "/u/explore/"
-              ? classes.activeLabel
-              : classes.label
-          }
-        >
-          Explore
-        </span>
-      </Button>
-      <Button
-        className={
-          isAuthenticated
-            ? window.location.pathname === `/u/profile/${userData.username}`
               ? classes.activeBtn
               : classes.btnLabel
-            : classes.btnLabel
-        }
-        fullWidth={true}
-        component={Link}
-        to={isAuthenticated ? `/u/profile/${userData.username}` : "/login"}
-      >
-        <Person
-          className={
-            isAuthenticated
-              ? window.location.pathname === `/u/profile/${userData.username}`
+          }
+          fullWidth={true}
+          component={Link}
+          to="/u"
+        >
+          <Home
+            className={
+              window.location.pathname === "/u" ||
+              window.location.pathname === "/u/" ||
+              (!isAuthenticated &&
+                window.location.pathname.startsWith(`/u/profile/`))
                 ? classes.activeIcon
                 : classes.btnIcon
-              : classes.btnIcon
+            }
+          />
+          <span
+            className={
+              window.location.pathname === "/u" ||
+              window.location.pathname === "/u/" ||
+              (!isAuthenticated &&
+                window.location.pathname.startsWith(`/u/profile/`))
+                ? classes.activeLabel
+                : classes.label
+            }
+          >
+            Home
+          </span>
+        </Button>
+        <Button
+          className={
+            window.location.pathname === "/u/explore" ||
+            window.location.pathname === "/u/explore/"
+              ? classes.activeBtn
+              : classes.btnLabel
           }
-        />
-        <span
+          fullWidth={true}
+          component={Link}
+          to="/u/explore"
+        >
+          <Explore
+            className={
+              window.location.pathname === "/u/explore" ||
+              window.location.pathname === "/u/explore/"
+                ? classes.activeIcon
+                : classes.btnIcon
+            }
+          />
+          <span
+            className={
+              window.location.pathname === "/u/explore" ||
+              window.location.pathname === "/u/explore/"
+                ? classes.activeLabel
+                : classes.label
+            }
+          >
+            Explore
+          </span>
+        </Button>
+        <Button
           className={
             isAuthenticated
               ? window.location.pathname === `/u/profile/${userData.username}`
-                ? classes.activeLabel
-                : classes.label
-              : classes.label
+                ? classes.activeBtn
+                : classes.btnLabel
+              : classes.btnLabel
           }
+          fullWidth={true}
+          component={Link}
+          to={isAuthenticated ? `/u/profile/${userData.username}` : "/login"}
         >
-          My Profile
-        </span>
-      </Button>
+          <Person
+            className={
+              isAuthenticated
+                ? window.location.pathname === `/u/profile/${userData.username}`
+                  ? classes.activeIcon
+                  : classes.btnIcon
+                : classes.btnIcon
+            }
+          />
+          <span
+            className={
+              isAuthenticated
+                ? window.location.pathname === `/u/profile/${userData.username}`
+                  ? classes.activeLabel
+                  : classes.label
+                : classes.label
+            }
+          >
+            My Profile
+          </span>
+        </Button>
 
-      <Button
-        className={
-          window.location.pathname.startsWith("/u/messages")
-            ? classes.activeBtn
-            : classes.btnLabel
-        }
-        fullWidth={true}
-        component={Link}
-        to={isAuthenticated ? `/u/messages` : "/login"}
-      >
-        <Badge style={{ marginRight: "10px" }} badgeContent={4} color="error">
-          <Message
+        <Button
+          className={
+            window.location.pathname.startsWith("/u/messages")
+              ? classes.activeBtn
+              : classes.btnLabel
+          }
+          fullWidth={true}
+          component={Link}
+          to={isAuthenticated ? `/u/messages` : "/login"}
+        >
+          <Badge style={{ marginRight: "10px" }} badgeContent={4} color="error">
+            <Message
+              className={
+                window.location.pathname === "/u/messages" ||
+                window.location.pathname === "/u/messages/"
+                  ? classes.activeBadgeIcon
+                  : classes.badgeIcon
+              }
+            />
+          </Badge>
+          <span
             className={
               window.location.pathname === "/u/messages" ||
               window.location.pathname === "/u/messages/"
-                ? classes.activeBadgeIcon
-                : classes.badgeIcon
+                ? classes.activeLabel
+                : classes.label
+            }
+          >
+            Messages
+          </span>
+        </Button>
+
+        <Button
+          className={
+            window.location.pathname === "/u/settings" ||
+            window.location.pathname === "/u/settings/"
+              ? classes.activeBtn
+              : classes.btnLabel
+          }
+          fullWidth={true}
+          component={Link}
+          to="/u/settings"
+        >
+          <Settings
+            className={
+              window.location.pathname === "/u/settings" ||
+              window.location.pathname === "/u/settings/"
+                ? classes.activeIcon
+                : classes.btnIcon
             }
           />
-        </Badge>
-        <span
-          className={
-            window.location.pathname === "/u/messages" ||
-            window.location.pathname === "/u/messages/"
-              ? classes.activeLabel
-              : classes.label
-          }
+          <span
+            className={
+              window.location.pathname === "/u/settings" ||
+              window.location.pathname === "/u/settings/"
+                ? classes.activeLabel
+                : classes.label
+            }
+          >
+            Settings
+          </span>
+        </Button>
+        <Button
+          className={classes.btnLabel}
+          fullWidth={true}
+          onClick={handleClickOpen}
+          style={{ bottom: "0px" }}
         >
-          Messages
-        </span>
-      </Button>
-
-      <Button
-        className={
-          window.location.pathname === "/u/settings" ||
-          window.location.pathname === "/u/settings/"
-            ? classes.activeBtn
-            : classes.btnLabel
-        }
-        fullWidth={true}
-        component={Link}
-        to="/u/settings"
-      >
-        <Settings
-          className={
-            window.location.pathname === "/u/settings" ||
-            window.location.pathname === "/u/settings/"
-              ? classes.activeIcon
-              : classes.btnIcon
-          }
-        />
-        <span
-          className={
-            window.location.pathname === "/u/settings" ||
-            window.location.pathname === "/u/settings/"
-              ? classes.activeLabel
-              : classes.label
-          }
-        >
-          Settings
-        </span>
-      </Button>
-      <Button
-        className={classes.btnLabel}
-        fullWidth={true}
-        onClick={handleClickOpen}
-        style={{ bottom: "0px" }}
-      >
-        <ExitToApp className={classes.btnIcon} />
-        <span className={classes.label}>Logout</span>
-      </Button>
+          <ExitToApp className={classes.btnIcon} />
+          <span className={classes.label}>Logout</span>
+        </Button>
+      </div>
     </div>
   );
 };
