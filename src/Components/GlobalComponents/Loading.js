@@ -7,6 +7,7 @@ const Loading = ({ loading }) => {
   // Can be a string as well. Need to ensure each key-value pair ends with ;
 
   const override = css`
+    z-index: 4;
     margin: 0;
     position: absolute;
     top: 50%;
@@ -23,6 +24,7 @@ const Loading = ({ loading }) => {
           color={"rgb(255,0,0)"}
           loading={loading}
         />
+        <span className="loadingLabel">Please wait...</span>
       </div>
     </Fade>
   );

@@ -1,4 +1,7 @@
+// Home Component Styling
+
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,500;0,700;0,900;1,300&display=swap");
+@import "./variables.scss";
 
 .info {
   width: 100%;
@@ -19,14 +22,10 @@
     margin-bottom: 2.5%;
   }
 
-  .purple {
-    color: #ff0022;
+  .red {
+    color: $color-primary;
   }
 
-  .firstname {
-    color: #ff0019;
-    font-weight: 700;
-  }
   .welcomeContainer {
     margin-bottom: 2%;
     background-color: #ffffff2f;
@@ -66,6 +65,7 @@
 }
 
 .overlay {
+  z-index: 0;
   position: absolute;
   top: 0;
   right: 0;

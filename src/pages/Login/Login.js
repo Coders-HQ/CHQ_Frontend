@@ -14,11 +14,15 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { red } from "@material-ui/core/colors";
-import Logo from "../../Components/GlobalComponents/Logo";
-import { login, isAuth, getCurrentUserData } from "../../Services/auth.service";
+import Logo from "../../Images/Logo/png/dark_text.png";
+import { login, getCurrentUserData } from "../../Services/auth.service";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import Overlay from "./Overlay";
+import Background from "./Background";
+import history from "../../history";
+import { Link as RouterLink } from "react-router-dom";
 
 const required = (value) => {
   if (!value) {
@@ -66,7 +70,7 @@ const Login = (props) => {
       login(username, password).then(
         async () => {
           await getCurrentUserData().then();
-          await props.history.push("/");
+          await history.push("/");
           window.location.reload();
         },
         (error) => {
@@ -89,107 +93,131 @@ const Login = (props) => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Logo />
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <Message
-          status={isError} // This decides if the error should show or not
-          errorMessage={message}
-        />
-        <Form
-          className={classes.form}
-          noValidate
-          onSubmit={handleLogin}
-          ref={form}
-        >
-          <Input
-            type="hidden"
-            name="username"
-            value={username}
-            validations={[required]}
+    <div>
+      <Container className={classes.wrapper} component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <img
+            className={classes.img}
+            src={Logo}
+            width="300rem"
+            alt="Coders HQ Logo"
           />
-
-          <Input
-            type="hidden"
-            name="password"
-            value={password}
-            validations={[required]}
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Message
+            status={isError} // This decides if the error should show or not
+            errorMessage={message}
           />
-          <TextField
-            className={classes.field}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="Username/Email"
-            autoFocus
-            autoComplete="off"
-            name="username"
-            value={username}
-            onChange={onChangeUsername}
-          />
-          <TextField
-            className={classes.field}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={onChangePassword}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="secondary"
-            className={classes.submit}
-            disabled={false}
+          <Form
+            className={classes.form}
+            noValidate
+            onSubmit={handleLogin}
+            ref={form}
           >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link
-                href="#"
-                variant="body2"
-                color="red"
-                className={classes.link}
-              >
-                Forgot password?
-              </Link>
+            <Input
+              type="hidden"
+              name="username"
+              value={username}
+              validations={[required]}
+            />
+
+            <Input
+              type="hidden"
+              name="password"
+              value={password}
+              validations={[required]}
+            />
+            <TextField
+              className={classes.field}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              autoFocus
+              autoComplete="off"
+              name="username"
+              value={username}
+              onChange={onChangeUsername}
+            />
+            <TextField
+              className={classes.field}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={onChangePassword}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="secondary"
+              className={classes.submit}
+              disabled={false}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link
+                  to="#"
+                  variant="body2"
+                  color="red"
+                  className={classes.link}
+                  component={RouterLink}
+                >
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link
+                  to="/register"
+                  variant="body2"
+                  color="red"
+                  className={classes.link}
+                  component={RouterLink}
+                >
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Link
-                href="/register"
-                variant="body2"
-                color="red"
-                className={classes.link}
-              >
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
+            <CheckButton style={{ display: "none" }} ref={checkBtn} />
+          </Form>
+        </div>
+      </Container>
+      <div>
+        <Loading loading={loading} />
+        <Overlay />
+        <Background />
       </div>
-      <Loading loading={loading} />
-    </Container>
+    </div>
   );
 };
 
 // Material-UI Styling
 
 const useStyles = makeStyles((theme) => ({
+  wrapper: {
+    backgroundColor: "#FFF",
+    maxHeight: "60rem",
+    borderRadius: "8px",
+    boxShadow: "2px 2px 50px rgba(0, 0, 0, 0.35)",
+    margin: "0",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -203,6 +231,10 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    marginBottom: "2rem",
+  },
+  img: {
+    marginTop: "1rem",
   },
   submit: {
     color: theme.palette.getContrastText(red[500]),

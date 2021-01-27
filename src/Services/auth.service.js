@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://coders-hq.herokuapp.com/auth/";
+const API_URL = process.env.REACT_APP_API_DOMAIN + `auth/`;
 
 // Checks if the User is authenticated or not
 const isAuth = () => {
@@ -24,6 +24,7 @@ const register = (username, email, password1, password2) => {
       email,
     })
     .then(function (response) {
+      console.log(response);
       return response;
     });
 };
@@ -37,6 +38,7 @@ const login = (username, password) => {
     })
     .then((response) => {
       if (response.data.key) {
+        console.log(response);
         localStorage.setItem("accessToken", response.data.key);
         const config = {
           method: "get",
@@ -59,8 +61,7 @@ const login = (username, password) => {
 const logout = () => {
   localStorage.removeItem("userData");
   localStorage.removeItem("accessToken");
-  window.location.reload();
-  console.log("Logout completed"); // for testing/dev purposes
+  //window.location.reload();
 };
 
 const getLocalToken = () => {

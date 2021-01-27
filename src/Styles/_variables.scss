@@ -1,0 +1,52 @@
+$color-dark: rgb(38, 45, 55);
+$color-light: rgb(242, 245, 250);
+$color-gray-light: rgb(231, 231, 231);
+$color-gray-dark: rgb(48, 55, 65);
+$color-primary: #da0202;
+$color-secondary: #b71c1c;
+
+.graydark {
+  background-color: $color-gray-dark;
+  h1,
+  h2,
+  h3,
+  p {
+    color: rgb(255, 255, 255);
+  }
+}
+
+.graylight {
+  background-color: $color-gray-light;
+  h1,
+  h2,
+  h3,
+  p {
+    color: rgb(23, 28, 36);
+  }
+}
+
+.dark {
+  background-color: $color-dark;
+  h1,
+  h2,
+  h3 {
+    color: rgb(255, 255, 255);
+  }
+}
+
+.light {
+  background-color: $color-light;
+  h1,
+  h2,
+  h3 {
+    color: rgb(23, 28, 36);
+  }
+}
+
+.lightLabel {
+  color: rgb(23, 28, 36);
+}
+
+.darkLabel {
+  color: rgb(255, 255, 255);
+}

@@ -1,0 +1,110 @@
+// This contains all the styling used for Dashboard Component
+@import "./variables";
+
+.dashboard-drawer {
+  top: 0;
+  left: 0;
+  width: 15rem;
+  height: 100%;
+  box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.16);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  transition: all 0.5s ease;
+  position: fixed;
+  z-index: 4;
+  border-bottom-right-radius: 10px;
+  font-family: "Poppins", sans-serif;
+  flex-shrink: 0;
+}
+
+.dashboard-header {
+  height: 5rem;
+  margin-left: 14.95rem;
+  display: block;
+  transition: all 0.5s ease;
+}
+
+.dashboard-section {
+  margin-left: 14.95rem;
+  transition: all 0.5s ease;
+}
+
+.h-break {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.363);
+  border: none;
+  margin-bottom: 1rem;
+  opacity: 0;
+}
+
+.bold {
+  font-weight: bolder;
+}
+
+.logo-wrapper {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.5);
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  border: transparent;
+}
+
+.dashboard-main {
+  transition: all 0.5s ease;
+  width: 100%;
+  text-align: center;
+  height: 100%;
+  display: block; /* change the default display type to inline-block */
+  overflow: hidden; /* hide the overflow */
+  position: fixed;
+}
+
+// Mobile, Tablets support
+@media screen and (max-width: 768px) {
+  .dashboard-drawer {
+    min-width: 20%;
+    max-height: 35%;
+  }
+}
+
+.user-avatar {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-username {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 300;
+  font-size: 100%;
+  margin-bottom: 1rem;
+}
+
+.btn-group {
+  position: relative;
+  top: 30%;
+  transform: translateY(-45%);
+}

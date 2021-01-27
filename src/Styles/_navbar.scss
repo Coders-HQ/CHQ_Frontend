@@ -1,33 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,500;0,700;0,900;1,300&display=swap");
-
-.link {
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
-  font-weight: 400;
-  color: #fff;
-  transition: color 100ms ease-in-out;
-  &:hover {
-    color: #ff0000;
-    cursor: pointer;
-  }
-  @media (max-width: 1000px) {
-    padding: 14px 0;
-    width: 100%;
-    font-size: 18px;
-  }
-}
+@import "./variables.scss";
 
 .linksContainer {
+  font-size: 64px;
   width: 100%;
   max-width: 750px;
   display: flex;
-  align-items: Center;
-  justify-content: space-between;
-  margin-right: 6px;
-  a {
-    margin-right: 2%;
-  }
+  align-items: center;
+  justify-content: center;
   @media (max-width: 1000px) {
     max-width: 100%;
     padding: 0 30px 20px 30px;
@@ -37,18 +17,6 @@
     position: absolute;
     left: 0;
     top: 5rem;
-    background: rgb(41, 41, 41);
-    transition: top 400ms ease-in-out, opacity 400ms ease-in-out;
-    &.hidden {
-      left: 0;
-      top: -500px;
-      opacity: 0;
-    }
-    .btn {
-      width: 100%;
-      text-align: center;
-      padding: 16px;
-    }
     .github-button {
       img {
         opacity: 0;
@@ -59,21 +27,21 @@
 
 .Logo {
   float: left;
-  cursor: pointer;
   margin-left: 1%;
 }
 
 .navbar {
-  position: sticky;
   width: 100%;
   position: absolute;
   top: 1%;
   padding: 1rem 2rem;
   background: transparent;
+  display: inline-block;
+  vertical-align: middle;
   z-index: 10;
   .container {
     display: flex;
-    align-items: left;
+    align-items: center;
     justify-content: space-between;
     #burgerMenu {
       color: #fff;

@@ -1,5 +1,4 @@
 import axios from "axios";
-import authHeader from "./auth-header";
 
 /**
  *
@@ -7,25 +6,28 @@ import authHeader from "./auth-header";
  *
  **/
 
-const API_URL = "https://coders-hq.herokuapp.com/";
+const getProfile = (userName) => {
+  // Get profile data of a user via Username
+  if (userName !== null) {
+    const config = {
+      method: "get",
+      url: process.env.REACT_APP_API_DOMAIN + "/profiles/" + userName + "/",
+    };
 
-const getProfile = ({ username }) => {
-  // Get profile of user
-  return axios.get(API_URL + "profiles/" + username);
+    return axios(config).then(function (response) {
+      return response.data;
+    });
+  }
 };
 
 const getHackathons = () => {
-  // Get all Hackathons
-  return axios.get(API_URL + "hackathons");
+  // GET all Hackathons
+  return axios.get(process.env.REACT_APP_API_DOMAIN + "/hackathons/");
 };
 
-const getSpecHackthon = ({ id }) => {
+const getSpecificHackathon = ({ id }) => {
   // GET Specific Hackathons
-  return axios.get(API_URL + "hackathon/" + id);
+  return axios.get(process.env.REACT_APP_API_DOMAIN + "/hackathon/" + id);
 };
 
-export default {
-  getProfile,
-  getHackathons,
-  getSpecHackthon,
-};
+export { getProfile, getHackathons, getSpecificHackathon };

@@ -14,13 +14,16 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { red } from "@material-ui/core/colors";
-import Logo from "../../Components/GlobalComponents/Logo";
-import { register, isAuth } from "../../Services/auth.service";
+import Logo from "../../Images/Logo/png/dark_text.png";
+import { register } from "../../Services/auth.service";
 import { isEmail } from "validator";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import Background from "./Background";
+import Overlay from "./Overlay";
 import Loading from "../../Components/GlobalComponents/Loading";
+import { Link as RouterLink } from "react-router-dom";
 
 const required = (value) => {
   if (!value) {
@@ -58,14 +61,14 @@ const Register = (props) => {
   const [passwordMessage, setPasswordMessage] = useState("");
   const [confirmPassMessage, setConfirmPassMessage] = useState("");
 
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
-  };
-
   const onChangeEmail = (e) => {
     const email = e.target.value;
     setEmail(email);
+  };
+
+  const onChangeUsername = (e) => {
+    const username = e.target.value;
+    setUsername(username);
   };
 
   const onChangePassword = (e) => {
@@ -90,6 +93,7 @@ const Register = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       register(username, email, password, confirmPassword).then(
         (response) => {
+          console.log(response);
           if (response.data.key) {
             setMessage("Success! Verification email sent to " + email);
             setSuccessful(true);
@@ -106,6 +110,7 @@ const Register = (props) => {
           const resMessage = error.response && error.response.data;
           if (!(resMessage.email === undefined)) {
             setEmailMessage(resMessage.email[0]);
+            setErrorMessage("Please check your details");
             setSuccessful(false);
             setError(true);
             setEmailError(true);
@@ -115,6 +120,8 @@ const Register = (props) => {
 
           if (!(resMessage.username === undefined)) {
             setUsernameMessage(resMessage.username[0]);
+            setErrorMessage(resMessage.username[0]);
+            setErrorMessage("Please check your details");
             setSuccessful(false);
             setError(true);
             setUsernameError(true);
@@ -123,7 +130,9 @@ const Register = (props) => {
           }
 
           if (!(resMessage.password1 === undefined)) {
+            setErrorMessage("Please check your details");
             setPasswordMessage(resMessage.password1[0]);
+            setErrorMessage(resMessage.password1[0]);
             setSuccessful(false);
             setError(true);
             setPasswordError(true);
@@ -133,19 +142,22 @@ const Register = (props) => {
 
           if (!(resMessage.password2 === undefined)) {
             setConfirmPassMessage(resMessage.password2[0]);
+            setErrorMessage(resMessage.password2[0]);
             setSuccessful(false);
             setError(true);
             setConfirmPassError(true);
-          } else {
-            setConfirmPassError(false);
           }
 
           if (!(resMessage.non_field_errors === undefined)) {
-            setErrorMessage(resMessage.non_field_errors[0]);
+            setPasswordMessage(resMessage.non_field_errors[0]);
+            setConfirmPassMessage(resMessage.non_field_errors[0]);
+            setErrorMessage("Please check your details");
+            setPasswordError(true);
+            setConfirmPassError(true);
             setSuccessful(false);
             setError(true);
           } else {
-            setMessage("Unknown Error");
+            setErrorMessage("Please check your details");
             setSuccessful(false);
             setError(true);
           }
@@ -156,163 +168,191 @@ const Register = (props) => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Logo />
-        <Typography component="h1" variant="h5">
-          Register
-        </Typography>
-        <Error
-          status={isError} // This decides if the error should show or not
-          message={errorMessage}
-        />
-        <Message
-          status={successful} // This decides if the error should show or not
-          message={message}
-        />
-        <Form
-          className={classes.form}
-          noValidate
-          onSubmit={handleRegister}
-          ref={form}
-        >
-          <Input
-            type="hidden"
-            name="email"
-            value={email}
-            validations={[required]}
+    <div>
+      <Container className={classes.wrapper} component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <img
+            className={classes.img}
+            src={Logo}
+            width="300rem"
+            alt="Coders HQ Logo"
           />
-          <Input
-            type="hidden"
-            name="username"
-            value={username}
-            validations={[required]}
-          />
-
-          <Input
-            type="hidden"
-            name="password"
-            value={password}
-            validations={[required]}
-          />
-
-          <Input
-            type="hidden"
-            name="confirmpassword"
-            value={confirmPassword}
-            validations={[required]}
-          />
-          <TextField
-            className={classes.field}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="email"
-            label="Email Address"
-            type="email"
-            id="email"
-            autoComplete="off"
-            value={email}
-            onChange={onChangeEmail}
-            validations={[required]}
-            error={isEmailError}
-            helperText={isEmailError ? emailMessage : ""}
-          />
-          <TextField
-            className={classes.field}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoFocus
-            autoComplete="off"
-            onChange={onChangeUsername}
-            validations={[required]}
-            error={isUsernameError}
-            helperText={isUsernameError ? usernameMessage : ""}
-          />
-          <TextField
-            className={classes.field}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={onChangePassword}
-            validations={[required]}
-            error={isPasswordError}
-            helperText={isPasswordError ? passwordMessage : ""}
-          />
-
-          <TextField
-            className={classes.field}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="confirm-password"
-            label="Confirm Password"
-            type="password"
-            id="confirm-password"
-            autoComplete="current-password"
-            value={confirmPassword}
-            onChange={onChangeConfirmPassword}
-            validations={[required]}
-            error={isConfirmPassError}
-            helperText={isConfirmPassError ? confirmPassMessage : ""}
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="secondary"
-            className={classes.submit}
-          >
+          <Typography component="h1" variant="h5">
             Register
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link
-                href="/"
-                variant="body2"
-                color="red"
-                className={classes.link}
-              >
-                Back to home page
-              </Link>
+          </Typography>
+          <Error
+            status={isError} // This decides if the error should show or not
+            errorError={errorMessage}
+          />
+          <Message
+            status={successful} // This decides if the error should show or not
+            message={message}
+          />
+          <Form
+            className={classes.form}
+            noValidate
+            onSubmit={handleRegister}
+            ref={form}
+          >
+            <Input
+              type="hidden"
+              name="email"
+              value={email}
+              validations={[required]}
+            />
+            <Input
+              type="hidden"
+              name="username"
+              value={username}
+              validations={[required]}
+            />
+
+            <Input
+              type="hidden"
+              name="password"
+              value={password}
+              validations={[required]}
+            />
+
+            <Input
+              type="hidden"
+              name="confirmpassword"
+              value={confirmPassword}
+              validations={[required]}
+            />
+            <TextField
+              className={classes.field}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="email"
+              label="Email Address"
+              type="email"
+              id="email"
+              autoComplete="off"
+              autoFocus
+              value={email}
+              onChange={onChangeEmail}
+              validations={[required]}
+              error={isEmailError}
+              helperText={isEmailError ? emailMessage : ""}
+            />
+            <TextField
+              className={classes.field}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="off"
+              onChange={onChangeUsername}
+              validations={[required]}
+              error={isUsernameError}
+              helperText={isUsernameError ? usernameMessage : ""}
+            />
+            <TextField
+              className={classes.field}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={onChangePassword}
+              validations={[required]}
+              error={isPasswordError}
+              helperText={isPasswordError ? passwordMessage : ""}
+            />
+
+            <TextField
+              className={classes.field}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="confirm-password"
+              label="Confirm Password"
+              type="password"
+              id="confirm-password"
+              autoComplete="current-password"
+              value={confirmPassword}
+              onChange={onChangeConfirmPassword}
+              validations={[required]}
+              error={isConfirmPassError}
+              helperText={isConfirmPassError ? confirmPassMessage : ""}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="secondary"
+              className={classes.submit}
+            >
+              Register
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link
+                  to="/"
+                  component={RouterLink}
+                  variant="body2"
+                  color="red"
+                  className={classes.link}
+                >
+                  Back to home page
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link
+                  to="/login"
+                  component={RouterLink}
+                  variant="body2"
+                  color="red"
+                  className={classes.link}
+                >
+                  {"Already have an account? Login"}
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Link
-                href="/login"
-                variant="body2"
-                color="red"
-                className={classes.link}
-              >
-                {"Already have an account? Login"}
-              </Link>
-            </Grid>
-          </Grid>
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
+            <CheckButton style={{ display: "none" }} ref={checkBtn} />
+          </Form>
+        </div>
+      </Container>
+      <div>
+        <Loading loading={loading} />
+        <Overlay />
+        <Background />
       </div>
-      <Loading loading={loading} />
-    </Container>
+    </div>
   );
 };
 
 // Material-UI Styling
 
 const useStyles = makeStyles((theme) => ({
+  video: {
+    backgroundColor: "#000",
+    color: "#000",
+  },
+  wrapper: {
+    backgroundColor: "#FFF",
+    maxHeight: "52rem",
+    borderRadius: "15px",
+    boxShadow: "2px 2px 50px rgba(0, 0, 0, 0.35)",
+    margin: "0",
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -326,6 +366,10 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
+    marginBottom: "2rem",
+  },
+  img: {
+    marginTop: "1rem",
   },
   submit: {
     color: theme.palette.getContrastText(red[500]),

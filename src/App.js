@@ -1,8 +1,8 @@
 /**
  * TODO:
  * - [DONE] Login & Authentication System
- * - Welcome/Home Page (React-Scroll & Requires new Layout)
- * - Profile/Dashboard Page (Would show functions a user could do including adding an API)
+ * - [IN PROGRESS] Welcome/Home Page (React-Scroll & Requires new Layout)
+ * - [IN PROGRESS] Profile/Dashboard Page (Would show functions a user could do including adding an API)
  * - Search Component (To be added to all pages as a quick results version & should be an advanced search on its own page)
  * - Challenges Page/Component
  * - Thrillacons Page/Component
@@ -12,6 +12,7 @@
 import React from "react";
 import "./Styles/app.scss";
 import Main from "./Components/Main/Main";
+require("dotenv").config();
 
 const App = () => (
   <div className="App">
