@@ -9,6 +9,7 @@ function SvgComponent(props) {
       id="prefix__svg575"
       style={{
         marginTop: "3rem",
+        width: "80%",
       }}
     >
       <defs id="prefix__defs82">

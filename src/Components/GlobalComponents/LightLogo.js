@@ -7,7 +7,7 @@ function SvgComponent(props) {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 1366 770"
       id="prefix__svg575"
-      style={{ marginTop: "3rem" }}
+      style={{ marginTop: "3rem", width: "80%" }}
     >
       <defs id="prefix__defs82">
         <clipPath id="prefix__clip-path">
