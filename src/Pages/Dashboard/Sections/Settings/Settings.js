@@ -6,12 +6,12 @@ import Paper from "@material-ui/core/Paper";
 const Settings = ({ darkMode, setTheme }) => {
   const useStyles = makeStyles((theme) => ({
     root: {
-      display: "flex",
+      display: "inline-block",
       flexWrap: "wrap",
       "& > *": {
-        clear: "both",
+        marginTop: "2rem",
         width: "100rem",
-        height: "15rem",
+        height: "50rem",
       },
     },
   }));
@@ -23,10 +23,12 @@ const Settings = ({ darkMode, setTheme }) => {
       className={"dashboard-section " + (darkMode ? "graydark" : "graylight")}
     >
       <h1>Settings</h1>
-      <div className={classes.root}>
-        <Paper elevation={3}>
-          <ThemeSwitch darkMode={darkMode} setTheme={setTheme} />
-        </Paper>
+      <div
+        className={
+          "dashboard-settings " + (darkMode ? "graydark" : "graylight")
+        }
+      >
+        <ThemeSwitch darkMode={darkMode} setTheme={setTheme} />
       </div>
     </div>
   );
