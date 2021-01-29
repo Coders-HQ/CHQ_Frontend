@@ -30,6 +30,8 @@
     "react-scripts": "^4.0.1",
     "react-scroll": "^1.8.1",
     "react-scroll-up": "^1.3.7",
+    "react-slick": "^0.28.0",
+    "react-smooth-scrolling": "^1.0.2",
     "react-spinners": "^0.9.0",
     "react-spring": "^8.0.27",
     "react-tabs": "^3.1.2",
