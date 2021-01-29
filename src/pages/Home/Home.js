@@ -1,26 +1,36 @@
 import React, { useState } from "react";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import Footer from "./components/Footer";
+import HeroSection from "./components/HeroSection";
+import InfoSection from "./components/InfoSection";
+import {
+  homeObjOne,
+  homeObjTwo,
+  homeObjThree,
+} from "./components/InfoSection/Data";
+import Services from "./components/Services";
+import FaqSection from "./components/FaqSection/faqSection";
 
-import Nav from "./Components_Landing/Navbar";
-import Overlay from "./Components_Landing/Overlay";
-import Background from "./Components_Landing/Background";
-import Sidebar from "./Components_Landing/Sidebar";
-
-const Home = ({ isAuth }) => {
+function Home() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = (e) => {
-    e.preventDefault();
+  const toggle = () => {
     setIsOpen(!isOpen);
   };
-
   return (
-    <section className="main" id="home">
-      <Background />
-      <Overlay />
+    <>
       <Sidebar isOpen={isOpen} toggle={toggle} />
-      <Nav isOpen={isOpen} toggle={toggle} />
-    </section>
+      <Navbar toggle={toggle} />
+      <HeroSection />
+      <InfoSection {...homeObjOne} />
+      <InfoSection {...homeObjTwo} />
+      <Services />
+      <FaqSection />
+      <InfoSection {...homeObjThree} />
+      <Footer />
+    </>
   );
-};
+}
 
 export default Home;
