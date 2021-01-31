@@ -12,7 +12,7 @@ export const InfoContainer = styled.div`
 export const InfoWrapper = styled.div`
   display: grid;
   z-index: 1;
-  height: 860px;
+  height: 1000px;
   width: 100%;
   max-width: 1100px;
   margin-right: auto;
@@ -20,6 +20,21 @@ export const InfoWrapper = styled.div`
   padding: 0 24px;
   justify-content: center;
   font-family: Poppins;
+
+  @media screen and (max-height: 812px) {
+    height: 1000px;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: 690px;
+  }
+
+  @media screen and (max-width: 390px) and (min-height: 800px) {
+    height: 900px;
+  }
+  @media screen and (max-width: 321px) and (min-height: 500px) {
+    height: 500px;
+  }
 `;
 
 export const InfoRow = styled.div`
@@ -90,8 +105,7 @@ export const BtnWrap = styled.div`
 `;
 
 export const ImgWrap = styled.div`
-  max-width: 555px;
-  height: 100%;
+  max-width: 455px;
 `;
 
 export const Img = styled.img`
