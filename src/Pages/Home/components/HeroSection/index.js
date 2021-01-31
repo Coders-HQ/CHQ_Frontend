@@ -32,6 +32,7 @@ const HeroSection = () => {
       <HeroContent>
         <LightLogo />
         <HeroH1>
+          {"< "}
           <TextLoop
             className="red"
             children={[
@@ -44,7 +45,7 @@ const HeroSection = () => {
               "Making",
             ]}
           ></TextLoop>{" "}
-          the future using code.
+          the future using code. {" >"}
         </HeroH1>
         <HeroP>
           As technology enhances, people lives enhance too. We aim to increase
