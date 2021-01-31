@@ -15,28 +15,22 @@ import {
 const Services = () => {
   return (
     <ServicesContainer id="services">
-      <ServicesH1>Our Services</ServicesH1>
+      <ServicesH1>Our Partners</ServicesH1>
       <ServicesWrapper>
         <ServicesCard>
           <ServicesIcon src={Icon1} />
-          <ServicesH2>Reduce Expenses</ServicesH2>
-          <ServicesP>
-            We help reduce your fees and increase your overall revenue.
-          </ServicesP>
+          <ServicesH2>Partner Name</ServicesH2>
+          <ServicesP>Partner Paragraph</ServicesP>
         </ServicesCard>
         <ServicesCard>
           <ServicesIcon src={Icon2} />
-          <ServicesH2>Golden Visas</ServicesH2>
-          <ServicesP>
-            500 Golden Visas for the best coders in the world.
-          </ServicesP>
+          <ServicesH2>Partner Name</ServicesH2>
+          <ServicesP>Partner Paragraph</ServicesP>
         </ServicesCard>
         <ServicesCard>
           <ServicesIcon src={Icon3} />
-          <ServicesH2>Premium Benefits</ServicesH2>
-          <ServicesP>
-            Unlock our special membership card that returns 5% cash back.
-          </ServicesP>
+          <ServicesH2>Partner Name</ServicesH2>
+          <ServicesP>Partner Paragraph</ServicesP>
         </ServicesCard>
       </ServicesWrapper>
     </ServicesContainer>

@@ -60,7 +60,18 @@ const Sidebar = ({ isOpen, toggle }) => {
             exact="true"
             offset={-80}
           >
-            Register
+            FAQs
+          </SidebarLink>
+          <SidebarLink
+            to="signup"
+            onClick={toggle}
+            smooth={true}
+            duration={500}
+            spy={true}
+            exact="true"
+            offset={-80}
+          >
+            Become a Member
           </SidebarLink>
         </SidebarMenu>
         <SideBtnWrap>
