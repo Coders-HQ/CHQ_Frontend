@@ -12,7 +12,6 @@ import {
   Subtitle,
   BtnWrap,
   ImgWrap,
-  Img,
 } from "./InfoElements";
 
 const InfoSection = ({
@@ -30,6 +29,7 @@ const InfoSection = ({
   darkText,
   dark,
   dark2,
+  Img,
 }) => {
   console.log(primary);
   return (
@@ -60,9 +60,7 @@ const InfoSection = ({
               </TextWrapper>
             </Column1>
             <Column2>
-              <ImgWrap>
-                <Img src={img} alt={alt} />
-              </ImgWrap>
+              <ImgWrap>{Img}</ImgWrap>
             </Column2>
           </InfoRow>
         </InfoWrapper>

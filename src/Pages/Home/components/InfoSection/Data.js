@@ -1,19 +1,25 @@
-export const homeObjOne = {
-  id: "about",
+import Contribute from "./illustrations/Contribute";
+import GlobalHackathon from "./illustrations/GlobalHackathon";
+import Person from "./illustrations/Person";
+import { Link } from "react-router-dom";
+import { Button } from "../ButtonElements";
+
+export const globalHackathons = {
+  id: "Incentive",
   lightBg: false,
   lightText: true,
   lightTextDesc: true,
-  topLine: "Incentives",
-  headline: "Unlimited Transactions with zero fees",
-  description:
-    "Get access to our exclusive app that allows you to send unlimited transactions without getting charged any fees",
-  buttonLabel: "Get Started",
+  topLine: "Hackathons",
+  headline: "1 Global Virtual Hackathon",
+  description: "",
+  buttonLabel: "Learn More",
   imgStart: false,
-  img: require("../../images/svg-1.svg"),
-  alt: "Car",
+  Img: <GlobalHackathon />,
+  alt: "Null",
   dark: true,
   primary: true,
   darkText: false,
+  Index: 0,
 };
 
 export const homeObjTwo = {
@@ -21,33 +27,34 @@ export const homeObjTwo = {
   lightBg: true,
   lightText: false,
   lightTextDesc: false,
-  topLine: "Unlimited Access",
-  headline: "Login to your account at any time",
+  topLine: "Open Source",
+  headline: "You can contribute in building our community of coders",
   description:
-    "We have you covered no matter where you are located. All you need is an internet connection and a phone or computer.",
+    "Join our community of innovative coders and help with building and evolving it.",
   buttonLabel: "Learn More",
   imgStart: true,
-  img: require("../../images/svg-2.svg"),
-  alt: "Piggybank",
+  alt: "Coding a robot",
   dark: false,
   primary: false,
   darkText: true,
+  Img: <Contribute />,
 };
 
 export const homeObjThree = {
   id: "signup",
-  lightBg: true,
-  lightText: false,
+  lightBg: false,
+  lightText: true,
   lightTextDesc: false,
   topLine: "Join Coders HQ!",
   headline: "Creating an account is extremely easy",
   description:
-    "Get everything set up and ready in under 10 minutes. All you need to do is add your information and you're ready to go.",
+    "Get everything set up and ready in under 10 minutes. All you need to do is register and you're ready to go..",
   buttonLabel: "Start Now",
   imgStart: false,
-  img: require("../../images/svg-5.svg"),
+  Img: <Person />,
   alt: "Papers",
-  dark: false,
+  dark: true,
   primary: false,
-  darkText: true,
+  darkText: false,
+  Index: 2,
 };
