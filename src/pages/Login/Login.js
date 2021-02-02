@@ -187,7 +187,7 @@ const Login = (props) => {
                   className={classes.link}
                   component={RouterLink}
                 >
-                  {"Become a Member"}
+                  {"Not a member yet? Join us!"}
                 </Link>
               </Grid>
             </Grid>
