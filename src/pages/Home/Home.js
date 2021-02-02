@@ -4,11 +4,7 @@ import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
 import InfoSection from "./components/InfoSection";
-import {
-  globalHackathons,
-  homeObjTwo,
-  homeObjThree,
-} from "./components/InfoSection/Data";
+import { homeObjThree } from "./components/InfoSection/Data";
 import Services from "./components/Services";
 import FaqSection from "./components/FaqSection/faqSection";
 import SlideSection from "./components/SlideSection";
